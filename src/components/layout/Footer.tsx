@@ -13,9 +13,9 @@ export function Footer() {
               <Image
                 src="/images/logo-full.webp"
                 alt="Lumizo Docs"
-                width={150}
-                height={45}
-                className="h-8 w-auto"
+                width={200}
+                height={60}
+                className="h-10 w-auto"
               />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">

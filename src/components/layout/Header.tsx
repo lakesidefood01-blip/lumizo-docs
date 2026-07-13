@@ -17,9 +17,9 @@ export function Header() {
             <Image
               src="/images/logo-full.webp"
               alt="Lumizo Docs"
-              width={200}
-              height={60}
-              className="h-10 w-auto"
+              width={300}
+              height={90}
+              className="h-12 w-auto"
               priority
             />
           </Link>
