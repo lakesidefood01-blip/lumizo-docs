@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FileText } from "lucide-react";
+import Image from "next/image";
 import { GENERATORS, SITE_NAME } from "@/lib/constants";
 
 export function Footer() {
@@ -9,12 +9,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <FileText className="h-4 w-4" />
-              </div>
-              <span className="font-extrabold">Lumizo</span>
-              <span className="text-muted-foreground font-semibold">Docs</span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/images/logo-full.webp"
+                alt="Lumizo Docs"
+                width={150}
+                height={45}
+                className="h-8 w-auto"
+              />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Create professional business documents instantly. Free, fast, and
