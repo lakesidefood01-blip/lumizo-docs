@@ -15,12 +15,14 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p>Invoice merupakan dokumen penting dalam setiap transaksi bisnis. Dokumen ini berfungsi sebagai bukti tertulis atas barang atau jasa yang telah diberikan, sekaligus menjadi alat penagihan resmi kepada klien. Invoice yang profesional tidak hanya meningkatkan kredibilitas bisnis, tetapi juga mempercepat proses pembayaran.</p>
 
+      <p>Ingin membuat invoice secara instan? Gunakan <a href="/invoice-generator" class="text-primary underline hover:text-primary/80">Invoice Generator</a> dari Lumizo Docs.</p>
+
       <h2>Elemen Wajib dalam Invoice</h2>
 
       <p>Sebuah invoice yang lengkap dan profesional harus memuat beberapa elemen berikut:</p>
 
       <h3>1. Identitas Perusahaan</h3>
-      <p> cantumkan nama lengkap perusahaan, alamat, nomor telepon, email, serta logo resmi. Elemen ini memberikan kesan profesional dan memudahkan klien mengidentifikasi pengirim invoice.</p>
+      <p>Cantumkan nama lengkap perusahaan, alamat, nomor telepon, email, serta logo resmi. Elemen ini memberikan kesan profesional dan memudahkan klien mengidentifikasi pengirim invoice.</p>
 
       <h3>2. Nomor Invoice</h3>
       <p>Setiap invoice harus memiliki nomor unik yang berurutan. Sistem penomoran yang konsisten memudahkan pencatatan dan pelacakan transaksi di kemudian hari.</p>
@@ -44,7 +46,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Kirimkan invoice segera setelah pekerjaan selesai atau barang dikirim. Penundaan pengiriman invoice berpotensi mengurangi urgensi pembayaran di sisi klien.</p>
 
-      <p>Dengan memanfaatkan Lumizo Docs, Anda dapat membuat invoice profesional dalam waktu singkat. Cukup isi data yang diperlukan, dan dokumen akan dihasilkan dalam format PDF yang rapi dan siap dikirim.</p>
+      <p>Dengan memanfaatkan <a href="/invoice-generator" class="text-primary underline hover:text-primary/80">Lumizo Docs Invoice Generator</a>, Anda dapat membuat invoice profesional dalam waktu singkat. Cukup isi data yang diperlukan, dan dokumen akan dihasilkan dalam format PDF yang rapi dan siap dikirim.</p>
     `,
     category: "Invoice Guides",
     date: "2024-01-15",
@@ -55,6 +57,8 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Mengenal perbedaan mendasar antara quotation dan proposal, serta kapan masing-masing dokumen tersebut sebaiknya digunakan.",
     content: `
       <p>Dalam dunia bisnis, quotation dan proposal merupakan dua dokumen yang sering digunakan dalam transaksi dengan klien. Meskipun keduanya berkaitan dengan penawaran harga, terdapat perbedaan mendasar dalam fungsi dan penggunaannya.</p>
+
+      <p>Butuh membuat quotation? Gunakan <a href="/quotation-generator" class="text-primary underline hover:text-primary/80">Quotation Generator</a> dari Lumizo Docs untuk membuat penawaran harga yang profesional.</p>
 
       <h2>Definisi Quotation</h2>
 
@@ -98,7 +102,7 @@ export const blogPosts: BlogPost[] = [
         <li>Ada beberapa opsi harga yang perlu dijelaskan</li>
       </ul>
 
-      <p>Lumizo Docs menyediakan template profesional untuk kedua jenis dokumen ini. Anda dapat membuat quotation yang ringkas maupun proposal yang detail sesuai kebutuhan bisnis.</p>
+      <p>Lumizo Docs menyediakan template profesional untuk kedua jenis dokumen ini. Anda dapat membuat <a href="/quotation-generator" class="text-primary underline hover:text-primary/80">quotation</a> yang ringkas maupun proposal yang detail sesuai kebutuhan bisnis.</p>
     `,
     category: "Quotation Guides",
     date: "2024-01-10",
@@ -109,6 +113,8 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Panduan praktis pengelolaan resi dan bukti transaksi untuk menjaga ketertiban pembukuan bisnis.",
     content: `
       <p>Resi atau kwitansi merupakan bukti tertulis bahwa sebuah transaksi telah terjadi. Dokumen ini memiliki peran krusial dalam pembukuan dan pelaporan keuangan, terutama bagi pelaku usaha kecil dan menengah.</p>
+
+      <p>Untuk membuat resi yang profesional, gunakan <a href="/receipt-generator" class="text-primary underline hover:text-primary/80">Receipt Generator</a> dari Lumizo Docs.</p>
 
       <h2>Pentingnya Pengelolaan Resi</h2>
 
@@ -135,7 +141,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Saat ini, menyimpan resi tidak harus dalam bentuk fisik semata. Lakukan scanning atau fotografi terhadap setiap resi yang diterima, kemudian simpan dalam sistem penyimpanan digital yang terorganisir. Buatlah folder khusus berdasarkan bulan atau jenis transaksi untuk memudahkan pencarian.</p>
 
-      <p>Gunakan template resi yang konsisten untuk setiap transaksi. Template yang seragam tidak hanya memberikan kesan profesional, tetapi juga memudahkan proses pencatatan dan verifikasi. Lumizo Docs menyediakan template resi yang dapat disesuaikan dengan kebutuhan bisnis Anda.</p>
+      <p>Gunakan template resi yang konsisten untuk setiap transaksi. Template yang seragam tidak hanya memberikan kesan profesional, tetapi juga memudahkan proses pencatatan dan verifikasi. <a href="/receipt-generator" class="text-primary underline hover:text-primary/80">Lumizo Docs Receipt Generator</a> menyediakan template resi yang dapat disesuaikan dengan kebutuhan bisnis Anda.</p>
     `,
     category: "Receipt Guides",
     date: "2024-01-05",
@@ -146,6 +152,8 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Mengenal fungsi dan manfaat surat jalan sebagai dokumen pendukung dalam pengiriman barang.",
     content: `
       <p>Surat jalan merupakan dokumen resmi yang menyertai pengiriman barang dari satu lokasi ke lokasi lain. Dokumen ini berfungsi sebagai bukti bahwa pengiriman telah dilakukan secara sah dan tercatat.</p>
+
+      <p>Buat surat jalan yang profesional dengan <a href="/surat-jalan-generator" class="text-primary underline hover:text-primary/80">Surat Jalan Generator</a> dari Lumizo Docs.</p>
 
       <h2>Fungsi Surat Jalan</h2>
 
@@ -179,7 +187,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Penggunaan surat jalan yang konsisten membantu bisnis dalam beberapa aspek, antara lain peningkatan akuntabilitas pengiriman, kemudahan penyelesaian sengketa, dan efisiensi dalam pengelolaan inventaris.</p>
 
-      <p>Lumizo Docs menyediakan template surat jalan yang profesional dan mudah digunakan. Anda dapat membuat dokumen ini langsung dari browser tanpa perlu perangkat lunak tambahan.</p>
+      <p><a href="/surat-jalan-generator" class="text-primary underline hover:text-primary/80">Lumizo Docs Surat Jalan Generator</a> menyediakan template surat jalan yang profesional dan mudah digunakan. Anda dapat membuat dokumen ini langsung dari browser tanpa perlu perangkat lunak tambahan.</p>
     `,
     category: "Delivery Order Guides",
     date: "2024-01-01",
@@ -195,21 +203,27 @@ export const blogPosts: BlogPost[] = [
 
       <h3>1. Invoice (Faktur)</h3>
       <p>Invoice adalah dokumen penagihan yang dikirimkan kepada klien setelah barang atau jasa diberikan. Dokumen ini memuat rincian harga, jumlah, dan termin pembayaran. Invoice yang profesional membantu mempercepat proses penerimaan pembayaran.</p>
+      <p>Gunakan <a href="/invoice-generator" class="text-primary underline hover:text-primary/80">Invoice Generator</a> untuk membuat invoice profesional dalam hitungan detik.</p>
 
       <h3>2. Quotation (Penawaran Harga)</h3>
       <p>Quotation digunakan untuk memberikan informasi harga kepada calon klien sebelum transaksi terjadi. Dokumen ini bersifat mengikat dalam periode waktu tertentu dan menjadi dasar kesepakatan bisnis.</p>
+      <p>Buat quotation yang menarik dengan <a href="/quotation-generator" class="text-primary underline hover:text-primary/80">Quotation Generator</a> dari Lumizo Docs.</p>
 
       <h3>3. Receipt (Kwitansi)</h3>
       <p>Kwitansi merupakan bukti bahwa pembayaran telah diterima. Dokumen ini penting untuk pencatatan keuangan dan menjadi bukti sah dalam transaksi bisnis.</p>
+      <p>Sediakan bukti pembayaran yang resmi dengan <a href="/receipt-generator" class="text-primary underline hover:text-primary/80">Receipt Generator</a>.</p>
 
       <h3>4. Surat Jalan (Delivery Order)</h3>
       <p>Surat jalan menyertai pengiriman barang dari gudang ke lokasi penerima. Dokumen ini memuat rincian barang yang dikirim serta informasi pengiriman lainnya.</p>
+      <p>Siapkan surat jalan yang lengkap menggunakan <a href="/surat-jalan-generator" class="text-primary underline hover:text-primary/80">Surat Jalan Generator</a>.</p>
 
       <h3>5. Packing List</h3>
       <p>Packing list adalah daftar lengkap isi pengiriman. Dokumen ini membantu proses penerimaan barang dan menjadi rujukan jika terjadi selisih jumlah atau jenis barang.</p>
+      <p>Buat packing list yang terperinci dengan <a href="/packing-list-generator" class="text-primary underline hover:text-primary/80">Packing List Generator</a>.</p>
 
       <h3>6. Company Profile</h3>
       <p>Profil perusahaan yang memuat informasi mengenai visi, misi, layanan, dan pencapaian bisnis. Dokumen ini digunakan untuk keperluan pemasaran dan kerja sama dengan mitra bisnis.</p>
+      <p>Presentasikan perusahaan Anda dengan <a href="/company-profile" class="text-primary underline hover:text-primary/80">Company Profile Generator</a>.</p>
 
       <h2>Langkah Awal Implementasi</h2>
 
