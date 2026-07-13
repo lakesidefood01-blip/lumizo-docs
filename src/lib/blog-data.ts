@@ -9,159 +9,213 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "how-to-create-professional-invoice",
-    title: "Cara Bikin Invoice yang Profesional supaya Cepat Dibayar",
-    excerpt: "Panduan praktis bikin invoice yang rapi dan profesional, biar klien cepat transfer.",
+    slug: "cara-membuat-invoice-profesional",
+    title: "Cara Membuat Invoice yang Profesional",
+    excerpt: "Panduan lengkap membuat invoice profesional agar proses penagihan lebih efektif dan pembayaran diterima tepat waktu.",
     content: `
-      <p>Ceritanya gini: kamu sudah kerja keras menyelesaikan proyek untuk klien. Tapi begitu kirim invoice,Response-nya cuma "nanti ya" atau bahkan hilang tanpa kabar. Frustrating banget, kan?</p>
+      <p>Invoice merupakan dokumen penting dalam setiap transaksi bisnis. Dokumen ini berfungsi sebagai bukti tertulis atas barang atau jasa yang telah diberikan, sekaligus menjadi alat penagihan resmi kepada klien. Invoice yang profesional tidak hanya meningkatkan kredibilitas bisnis, tetapi juga mempercepat proses pembayaran.</p>
 
-      <p>Yang sering luput diperhatikan: invoice itu bukan sekadar nominal yang harus dibayar. Invoice yang profesional bikin klien merasa yakin dan lebih tertarik untuk segera bayar. Jadi ini soal kesan pertama juga.</p>
+      <h2>Elemen Wajib dalam Invoice</h2>
 
-      <h2>Elemen Wajib yang Harus Ada di Invoice</h2>
+      <p>Sebuah invoice yang lengkap dan profesional harus memuat beberapa elemen berikut:</p>
 
-      <ul>
-        <li><strong>Data perusahaan kamu</strong> — nama, alamat, nomor telepon, email. Ini bikin kamu keliatan legitimate.</li>
-        <li><strong>Nomor invoice unik</strong> — penting banget buat tracking. Jangan pakai nomor yang sama untuk dua transaksi berbeda.</li>
-        <li><strong>Daftar item yang jelas</strong> — apa saja yang sudah dikerjakan, berapa harganya. Kalau bisa, detailkan per item biar nggak ada yang bingung.</li>
-        <li><strong>Tanggal jatuh tempo</strong> — kasih tahu kapan harus bayar. Tanpa ini, klien sering kali menunda-nunda.</li>
-        <li><strong>Cara bayar</strong> — nomor rekening, metode pembayaran, atau link payment kalau ada.</li>
-      </ul>
+      <h3>1. Identitas Perusahaan</h3>
+      <p> cantumkan nama lengkap perusahaan, alamat, nomor telepon, email, serta logo resmi. Elemen ini memberikan kesan profesional dan memudahkan klien mengidentifikasi pengirim invoice.</p>
 
-      <h2>Kesalahan yang Sering Terjadi</h2>
+      <h3>2. Nomor Invoice</h3>
+      <p>Setiap invoice harus memiliki nomor unik yang berurutan. Sistem penomoran yang konsisten memudahkan pencatatan dan pelacakan transaksi di kemudian hari.</p>
 
-      <p>Saya pernah lihat invoice yang isinya cuma "Jasa desain: Rp 5.000.000". Nggak ada rincian, nggak ada deskripsi. Klien langsung tanya: "Desain apa aja? Kenapa bisa segitu?" Ujung-ujungnya telat bayar karena harus klarifikasi dulu.</p>
+      <h3>3. Rincian Barang atau Jasa</h3>
+      <p>Daftar item harus tertulis dengan jelas dan terperinci. Sertakan nama barang atau jasa, jumlah, satuan, dan harga per item. Rincian yang detail mencegah terjadinya kesalahpahaman antara pihak penjual dan pembeli.</p>
 
-      <p>Jadi, <strong>selalu rinciakan</strong>. Misalnya: "Desain logo - Rp 2.000.000", "Desain kartu nama - Rp 500.000", dst. Semakin jelas, semakin cepat dibayar.</p>
+      <h3>4. Tanggal dan Jatuh Tempo</h3>
+      <p>Tulis tanggal pembuatan invoice serta tanggal jatuh tempo pembayaran. Tanpa batas waktu yang jelas, klien cenderung menunda pembayaran.</p>
 
-      <h2>Timing juga Penting</h2>
+      <h3>5. Metode Pembayaran</h3>
+      <p>Sertakan informasi lengkap mengenai cara pembayaran, seperti nomor rekening bank, nama bank, atau metode pembayaran digital lainnya.</p>
 
-      <p>Kirim invoice segera setelah pekerjaan selesai. Jangan tunggu seminggu atau dua minggu. Semakin lama kamu tunda, semakin kecil kemungkinan klien ingat dan bayar tepat waktu.</p>
+      <h2>Kesalahan Umum yang Perlu Dihindari</h2>
 
-      <p>Dengan Lumizo Docs, kamu bisa generate invoice profesional dalam hitungan detik. Tinggal isi datanya, langsung jadi PDF yang rapi dan siap kirim.</p>
+      <p>Banyak pelaku bisnis yang mengirimkan invoice tanpa rincian yang memadai. Sebagai contoh, invoice yang hanya tertulis "Jasa Desain: Rp 5.000.000" tanpa penjelasan lebih lanjut akan menimbulkan pertanyaan dari klien mengenai komponen biaya tersebut.</p>
+
+      <p>Untuk menghindari hal ini, rincikan setiap item secara terpisah. Contohnya: Desain Logo sebesar Rp 2.000.000, Desain Kartu Nama sebesar Rp 500.000, dan seterusnya. Semakin detail rincian yang diberikan, semakin cepat proses verifikasi dan pembayaran dapat dilakukan.</p>
+
+      <h2>Waktu Pengiriman Invoice</h2>
+
+      <p>Kirimkan invoice segera setelah pekerjaan selesai atau barang dikirim. Penundaan pengiriman invoice berpotensi mengurangi urgensi pembayaran di sisi klien.</p>
+
+      <p>Dengan memanfaatkan Lumizo Docs, Anda dapat membuat invoice profesional dalam waktu singkat. Cukup isi data yang diperlukan, dan dokumen akan dihasilkan dalam format PDF yang rapi dan siap dikirim.</p>
     `,
     category: "Invoice Guides",
     date: "2024-01-15",
   },
   {
-    slug: "quotation-vs-proposal",
-    title: "Quotation vs Proposal: mana yang Perlu Dikirim?",
-    excerpt: "Bingung bedanya quotation sama proposal? Ini penjelasan simpelnya biar nggak salah kirim.",
+    slug: "perbedaan-quotation-dan-proposal",
+    title: "Perbedaan Quotation dan Proposal dalam Bisnis",
+    excerpt: "Mengenal perbedaan mendasar antara quotation dan proposal, serta kapan masing-masing dokumen tersebut sebaiknya digunakan.",
     content: `
-      <p>Pernah nggak sih, kamu diminta "kirim quotation" tapi malah bikin proposal? Atau sebaliknya, dikirim proposal padahal cuma butuh harga? Saya sering lihat ini terjadi, terutama di freelancer atau usaha kecil yang baru mulai.</p>
+      <p>Dalam dunia bisnis, quotation dan proposal merupakan dua dokumen yang sering digunakan dalam transaksi dengan klien. Meskipun keduanya berkaitan dengan penawaran harga, terdapat perbedaan mendasar dalam fungsi dan penggunaannya.</p>
 
-      <p>Sebenernya dua dokumen ini beda, meskipun sama-sama dikirim ke klien.</p>
+      <h2>Definisi Quotation</h2>
 
-      <h2>Quotation (Penawaran Harga)</h2>
+      <p>Quotation atau penawaran harga adalah dokumen yang memuat informasi mengenai harga tertentu untuk produk atau layanan yang ditawarkan. Dokumen ini bersifat ringkas dan langsung pada intinya.</p>
 
-      <p>Quotation itu singkat dan to the point. Isinya cuma harga untuk produk atau layanan tertentu. Nggak perlu banyak penjelasan — klien cuma perlu tahu: berapa, dan kapan bisa selesai.</p>
-
-      <p>Cocok kalau klien sudah tahu mau apa dan cuma butuh harga. Misalnya, "berapa biaya cetak 1000 brosur?" atau "tarif desain logo berapa?"</p>
-
-      <h2>Proposal</h2>
-
-      <p>Proposal lebih lengkap. Selain harga, biasanya ada penjelasan soal pendekatan, timeline, portofolio, dan kenapa kamu yang paling cocok untuk proyek ini.</p>
-
-      <p>Proposal biasanya dikirim saat proyeknya besar atau butuh strategi. Misalnya, "kami butuh agensi yang bisa handle kampanye digital selama 3 bulan."</p>
-
-      <h2>Jadi, Kapan Pakai yang Mana?</h2>
-
+      <h3>Karakteristik Quotation</h3>
       <ul>
-        <li><strong>Pakai quotation</strong> kalau: harga sudah jelas, scope kerja simpel, klien cuma minta angka.</li>
-        <li><strong>Pakai proposal</strong> kalau: proyek kompleks, perlu jelasin cara kerja, atau ada banyak opsi harga.</li>
+        <li>Berisi harga pasti untuk produk atau layanan tertentu</li>
+        <li>Format singkat dan tidak memerlukan penjelasan panjang</li>
+        <li>Cocok untuk transaksi dengan ruang lingkup yang sudah jelas</li>
+        <li>Masa berlaku biasanya terbatas</li>
       </ul>
 
-      <p>Kesalahan paling sering? Freelancer kirim proposal panjang-lebar padahal klien cuma mau tahu harga. Atau sebaliknya, kirim quotation begitu saja tanpa konteks, padahal proyeknya butuh penjelasan lebih.</p>
+      <h2>Definisi Proposal</h2>
 
-      <p>Di Lumizo Docs, kamu bisa buat keduanya — quotation yang ringkas atau proposal yang detail — dalam hitungan menit.</p>
+      <p>Proposal adalah dokumen yang lebih komprehensif dan berisi strategi, pendekatan, serta rencana kerja untuk memenuhi kebutuhan klien. Proposal tidak hanya memuat harga, tetapi juga penjelasan mengenai cara kerja, timeline, dan nilai tambah yang ditawarkan.</p>
+
+      <h3>Karakteristik Proposal</h3>
+      <ul>
+        <li>Berisi analisis kebutuhan dan solusi yang ditawarkan</li>
+        <li>Memuat rencana kerja dan timeline pelaksanaan</li>
+        <li>Menyertakan portofolio atau referensi pekerjaan sebelumnya</li>
+        <li>Bisa memuat beberapa opsi harga dengan paket berbeda</li>
+      </ul>
+
+      <h2>Kapan Menggunakan Masing-Masing Dokumen</h2>
+
+      <p>Pemilihan antara quotation dan proposal bergantung pada kompleksitas proyek dan kebutuhan klien. Berikut panduan umum penggunaannya:</p>
+
+      <h3>Gunakan Quotation Ketika</h3>
+      <ul>
+        <li>Klien sudah mengetahui dengan jelas produk atau jasa yang dibutuhkan</li>
+        <li>Ruang lingkup pekerjaan sederhana dan terukur</li>
+        <li>Klien hanya memerlukan informasi harga</li>
+      </ul>
+
+      <h3>Gunakan Proposal Ketika</h3>
+      <ul>
+        <li>Proyek bersifat kompleks dan memerlukan strategi khusus</li>
+        <li>Diperlukan penjelasan mengenai pendekatan dan metodologi kerja</li>
+        <li>Ada beberapa opsi harga yang perlu dijelaskan</li>
+      </ul>
+
+      <p>Lumizo Docs menyediakan template profesional untuk kedua jenis dokumen ini. Anda dapat membuat quotation yang ringkas maupun proposal yang detail sesuai kebutuhan bisnis.</p>
     `,
     category: "Quotation Guides",
     date: "2024-01-10",
   },
   {
-    slug: "receipt-best-practices",
-    title: "Tips Kelola Resi supaya Keuangan Usaha Rapi",
-    excerpt: "Resi kecil tapi penting. Ini cara mengelola resi biar nggak kacau saat audit atau laporan pajak.",
+    slug: "pengelolaan-resi-dalam-pembukuan",
+    title: "Pengelolaan Resi dalam Pembukuan Usaha",
+    excerpt: "Panduan praktis pengelolaan resi dan bukti transaksi untuk menjaga ketertiban pembukuan bisnis.",
     content: `
-      <p>Saya pernah punya klien yang hampir kena masalah pajak cuma gara-gara nggak punya bukti transaksi. Semua resi dibuang, digital record nggak ada. Pas ditanya, bingung sendiri.</p>
+      <p>Resi atau kwitansi merupakan bukti tertulis bahwa sebuah transaksi telah terjadi. Dokumen ini memiliki peran krusial dalam pembukuan dan pelaporan keuangan, terutama bagi pelaku usaha kecil dan menengah.</p>
 
-      <p>Resi itu kelihatannya sepele, tapi perannya krusial. Ini bukti bahwa transaksi benar-benar terjadi, dan jadi penyelamat saat ada sengketa atau audit.</p>
+      <h2>Pentingnya Pengelolaan Resi</h2>
 
-      <h2>Isi Resi yang Benar</h2>
+      <p>Banyak pelaku usaha yang menganggap remeh pengelolaan resi. Akibatnya, ketika diperlukan bukti transaksi untuk keperluan audit atau pelaporan pajak, dokumen tersebut tidak dapat ditemukan. Kondisi ini dapat menimbulkan masalah serius bagi kelangsungan bisnis.</p>
 
-      <ul>
-        <li><strong>Tanggal transaksi</strong> — jangan pernah lupa ini. Tanpa tanggal, resi hampir nggak ada gunanya.</li>
-        <li><strong>Nomor resi unik</strong> — untuk tracking dan referensi di masa depan.</li>
-        <li><strong>Jumlah yang diterima</strong> — nominal pasti, jangan perkiraan.</li>
-        <li><strong>Metode bayar</strong> — cash, transfer, kartu kredit, dll.</li>
-        <li><strong>Deskripsi singkat</strong> — untuk apa pembayaran ini. "Pembayaran jasa desain bulan Januari" lebih jelas dari sekadar "jasa".</li>
-      </ul>
+      <h2>Informasi yang Harus Ada pada Resi</h2>
 
-      <h2>Kesalahan Fatal yang Sering Terjadi</h2>
+      <h3>1. Tanggal Transaksi</h3>
+      <p>Tanggal merupakan elemen fundamental yang tidak boleh terlewat. Tanpa tanggal yang jelas, resi kehilangan fungsinya sebagai bukti kronologis transaksi.</p>
 
-      <p>Banyak pelaku UMKM yang nyimpen resi asal-asalan — masuk ke laci, dicampur sama bon belanja, atau malah dibuang. Pas butuh, nggak ketemu.</p>
+      <h3>2. Nomor Resi</h3>
+      <p>Setiap resi sebaiknya memiliki nomor urut yang unik. Nomor ini berguna untuk pencarian data dan referensi di masa mendatang.</p>
 
-      <p>Solusi yang saya sarankan: <strong>foto semua resi</strong> dan simpan di folder khusus di Google Drive atau Dropbox. Buat folder per bulan biar rapi. Ini jauh lebih aman dari menumpuk kertas.</p>
+      <h3>3. Jumlah Nominal</h3>
+      <p>Tuliskan jumlah uang yang diterima secara pasti. Hindari penulisan perkiraan atau angka bulat yang tidak sesuai dengan transaksi aktual.</p>
 
-      <h2>Gunakan Template yang Konsisten</h2>
+      <h3>4. Metode Pembayaran</h3>
+      <p>Cantumkan metode pembayaran yang digunakan, apakah secara tunai, transfer bank, kartu kredit, atau metode lainnya.</p>
 
-      <p>Kalau kamu sering terima pembayaran dari klien, pakai template resi yang seragam. Ini bikin kamu terlihat profesional dan memudahkan pembukuan. Lumizo Docs menyediakan template receipt yang siap pakai — tinggal isi, langsung jadi.</p>
+      <h3>5. Deskripsi Transaksi</h3>
+      <p>Berikan deskripsi singkat mengenai keperluan pembayaran. Contoh: "Pembayaran Jasa Desain Logo Bulan Januari 2024" lebih informatif dibandingkan sekadar "Jasa Desain".</p>
+
+      <h2>Cara Menyimpan Resi dengan Baik</h2>
+
+      <p>Saat ini, menyimpan resi tidak harus dalam bentuk fisik semata. Lakukan scanning atau fotografi terhadap setiap resi yang diterima, kemudian simpan dalam sistem penyimpanan digital yang terorganisir. Buatlah folder khusus berdasarkan bulan atau jenis transaksi untuk memudahkan pencarian.</p>
+
+      <p>Gunakan template resi yang konsisten untuk setiap transaksi. Template yang seragam tidak hanya memberikan kesan profesional, tetapi juga memudahkan proses pencatatan dan verifikasi. Lumizo Docs menyediakan template resi yang dapat disesuaikan dengan kebutuhan bisnis Anda.</p>
     `,
     category: "Receipt Guides",
     date: "2024-01-05",
   },
   {
-    slug: "delivery-order-essentials",
-    title: "Surat Jalan: Kenapa Dokumen Ini Sering Dianggap Remeh?",
-    excerpt: "Banyak yang skip bikin surat jalan padahal ini penyelamat saat ada masalah di perjalanan.",
+    slug: "pentingnya-surat-jalan-dalam-logistik",
+    title: "Pentingnya Surat Jalan dalam Operasional Logistik",
+    excerpt: "Mengenal fungsi dan manfaat surat jalan sebagai dokumen pendukung dalam pengiriman barang.",
     content: `
-      <p>Pernah dengar cerita barang hilang di perjalanan tapi nggak bisa klaim karena nggak ada surat jalan? Ini sering banget terjadi, terutama di usaha kecil yang pengiriman masih informal.</p>
+      <p>Surat jalan merupakan dokumen resmi yang menyertai pengiriman barang dari satu lokasi ke lokasi lain. Dokumen ini berfungsi sebagai bukti bahwa pengiriman telah dilakukan secara sah dan tercatat.</p>
 
-      <p>Surat jalan itu sebenernya simpel, tapi fungsinya besar. Ini dokumen yang menyertai barang dari gudang sampai ke tujuan, dan jadi bukti bahwa pengiriman benar-benar dilakukan.</p>
+      <h2>Fungsi Surat Jalan</h2>
+
+      <p>Dalam operasional bisnis, surat jalan memiliki beberapa fungsi penting:</p>
+
+      <ul>
+        <li>Sebagai bukti pengiriman barang kepada pihak penerima</li>
+        <li>Sebagai alat kontrol dan monitoring perjalanan barang</li>
+        <li>Sebagai dasar klaim asuransi jika terjadi kerusakan atau kehilangan</li>
+        <li>Sebagai dokumen pendukung dalam proses audit logistik</li>
+      </ul>
 
       <h2>Isi Surat Jalan yang Lengkap</h2>
 
-      <ul>
-        <li><strong>Data pengirim</strong> — nama, alamat, kontak</li>
-        <li><strong>Data penerima</strong> — nama, alamat lengkap, kontak yang bisa dihubungi</li>
-        <li><strong>Daftar barang</strong> — nama barang, jumlah, satuan. Jangan pernah kirim barang tanpa rincian.</li>
-        <li><strong>Tanggal dan waktu kirim</strong> — kapan barang keluar dari gudang.</li>
-        <li><strong>Info kurir/kendaraan</strong> — nomor polisi, nama supir, atau nama ekspedisi.</li>
-      </ul>
+      <h3>1. Data Pengirim</h3>
+      <p>Cantumkan nama lengkap pengirim, alamat, dan nomor kontak yang dapat dihubungi.</p>
 
-      <h2>Kenapa Ini Penting?</h2>
+      <h3>2. Data Penerima</h3>
+      <p>Sertakan nama lengkap penerima, alamat tujuan yang jelas, serta nomor kontak yang valid.</p>
 
-      <p>Selain untuk klaim asuransi, surat jalan juga jadi alat kontrol. Kamu bisa track kapan barang keluar, siapa yang bawa, dan kapan seharusnya sampai. Kalau ada keterlambatan atau selisih jumlah, dokumen ini jadi rujukan utama.</p>
+      <h3>3. Rincian Barang</h3>
+      <p>Daftar barang harus tertulis secara detail, meliputi nama barang, jumlah, satuan, dan keterangan tambahan jika diperlukan.</p>
 
-      <p>Di era digital sekarang, bikin surat jalan nggak harus manual lagi. Lumizo Docs bisa generate surat jalan profesional langsung dari browser kamu — cepat, rapi, dan siap cetak.</p>
+      <h3>4. Informasi Waktu</h3>
+      <p>Tulis tanggal dan waktu pengiriman, serta estimasi waktu tiba di lokasi tujuan.</p>
+
+      <h3>5. Data Kendaraan dan Kurir</h3>
+      <p>Sertakan informasi mengenai kendaraan yang digunakan, termasuk nomor polisi, serta identitas kurir atau supir yang bertanggung jawab.</p>
+
+      <h2>Manfaat Penggunaan Surat Jalan</h2>
+
+      <p>Penggunaan surat jalan yang konsisten membantu bisnis dalam beberapa aspek, antara lain peningkatan akuntabilitas pengiriman, kemudahan penyelesaian sengketa, dan efisiensi dalam pengelolaan inventaris.</p>
+
+      <p>Lumizo Docs menyediakan template surat jalan yang profesional dan mudah digunakan. Anda dapat membuat dokumen ini langsung dari browser tanpa perlu perangkat lunak tambahan.</p>
     `,
     category: "Delivery Order Guides",
     date: "2024-01-01",
   },
   {
-    slug: "small-business-documentation",
-    title: "Dokumen yang Wajib Dimiliki Setiap Usaha Kecil",
-    excerpt: "Baru mulai usaha? Ini daftar dokumen yang harus kamu siapkan sejak hari pertama.",
+    slug: "dokumen-wajib-usaha-kecil",
+    title: "Dokumen Bisnis Wajib bagi Usaha Kecil dan Menengah",
+    excerpt: "Daftar lengkap dokumen bisnis yang harus disiapkan oleh pelaku usaha kecil dan menengah untuk operasional yang terorganisir.",
     content: `
-      <p>Saya sering ketemu pelaku UMKM yang fokus banget sama penjualan, tapi lupa soal dokumen. "Belum perlu lah, masih kecil." Begitu katanya. Tapi begitu ada masalah — klien telat bayar, barang hilang, atau audit pajak — baru panik.</p>
+      <p>Setiap usaha, baik yang baru berdiri maupun yang sudah berjalan, memerlukan sistem dokumentasi yang baik. Dokumen bisnis yang tertata dengan rapi menjadi fondasi penting bagi kelangsungan dan perkembangan usaha.</p>
 
-      <p>Dokumen bisnis itu ibarat asuransi. Kamu nggak berharap butuh, tapi saat dibutuhkan, rasanya lega banget sudah siap.</p>
+      <h2>Jenis Dokumen Bisnis yang Perlu Disiapkan</h2>
 
-      <h2>Dokumen Wajib untuk Usaha Kecil</h2>
+      <h3>1. Invoice (Faktur)</h3>
+      <p>Invoice adalah dokumen penagihan yang dikirimkan kepada klien setelah barang atau jasa diberikan. Dokumen ini memuat rincian harga, jumlah, dan termin pembayaran. Invoice yang profesional membantu mempercepat proses penerimaan pembayaran.</p>
 
-      <ul>
-        <li><strong>Invoice</strong> — untuk tagih klien. Tanpa invoice formal, kamu nggak punya bukti tertulis soal tagihan.</li>
-        <li><strong>Quotation</strong> — untuk calon klien yang minta penawaran harga. Bikin kamu keliatan profesional.</li>
-        <li><strong>Resi / Kwitansi</strong> — bukti bahwa pembayaran sudah diterima. Penting untuk pembukuan dan klaim.</li>
-        <li><strong>Surat Jalan</strong> — menyertai pengiriman barang. Jadi bukti dan alat tracking.</li>
-        <li><strong>Packing List</strong> — daftar isi kiriman. Berguna saat ada selisih antara yang dikirim dan yang diterima.</li>
-        <li><strong>Company Profile</strong> — profil perusahaan yang bisa dikirim ke calon klien atau mitra bisnis.</li>
-      </ul>
+      <h3>2. Quotation (Penawaran Harga)</h3>
+      <p>Quotation digunakan untuk memberikan informasi harga kepada calon klien sebelum transaksi terjadi. Dokumen ini bersifat mengikat dalam periode waktu tertentu dan menjadi dasar kesepakatan bisnis.</p>
 
-      <h2>Mulai dari Mana?</h2>
+      <h3>3. Receipt (Kwitansi)</h3>
+      <p>Kwitansi merupakan bukti bahwa pembayaran telah diterima. Dokumen ini penting untuk pencatatan keuangan dan menjadi bukti sah dalam transaksi bisnis.</p>
 
-      <p>Nggak perlu bikin semuanya sekaligus. Mulai dari yang paling sering kamu pakai — biasanya invoice dan quotation. Setelah itu, tambah dokumen lain seiring bisnis kamu berkembang.</p>
+      <h3>4. Surat Jalan (Delivery Order)</h3>
+      <p>Surat jalan menyertai pengiriman barang dari gudang ke lokasi penerima. Dokumen ini memuat rincian barang yang dikirim serta informasi pengiriman lainnya.</p>
 
-      <p>Dengan Lumizo Docs, kamu bisa buat semua dokumen ini tanpa ribet. Pilih template, isi datanya, langsung jadi PDF yang profesional. Gratis dan bisa diakses dari mana saja.</p>
+      <h3>5. Packing List</h3>
+      <p>Packing list adalah daftar lengkap isi pengiriman. Dokumen ini membantu proses penerimaan barang dan menjadi rujukan jika terjadi selisih jumlah atau jenis barang.</p>
+
+      <h3>6. Company Profile</h3>
+      <p>Profil perusahaan yang memuat informasi mengenai visi, misi, layanan, dan pencapaian bisnis. Dokumen ini digunakan untuk keperluan pemasaran dan kerja sama dengan mitra bisnis.</p>
+
+      <h2>Langkah Awal Implementasi</h2>
+
+      <p>Pelaku usaha tidak perlu menyiapkan seluruh dokumen sekaligus. Mulailah dari dokumen yang paling sering digunakan, yaitu invoice dan quotation. Setelah itu, kembangkan sistem dokumentasi sesuai dengan pertumbuhan bisnis.</p>
+
+      <p>Lumizo Docs menyediakan solusi lengkap untuk pembuatan berbagai dokumen bisnis. Dengan antarmuka yang intuitif, Anda dapat membuat dokumen profesional secara instan tanpa memerlukan keahlian desain khusus.</p>
     `,
     category: "Small Business Tips",
     date: "2023-12-28",
