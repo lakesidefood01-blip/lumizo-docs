@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useTheme } from "next-themes";
-import { Moon, Sun, FileText } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Moon, Sun } from "lucide-react";
 import { Navigation } from "./Navigation";
 
 export function Header() {
@@ -13,12 +13,15 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5 font-bold text-xl tracking-tight">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <FileText className="h-5 w-5" />
-            </div>
-            <span className="font-extrabold">Lumizo</span>
-            <span className="text-muted-foreground font-semibold">Docs</span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/logo-full.webp"
+              alt="Lumizo Docs"
+              width={200}
+              height={60}
+              className="h-10 w-auto"
+              priority
+            />
           </Link>
 
           <Navigation />

@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   title: "Lumizo Docs - Create Professional Business Documents",
   description:
     "Create professional invoices, quotations, receipts, delivery orders, and packing lists in seconds. Free, fast, and easy to use.",
+  icons: {
+    icon: "/images/logo-icon.webp",
+    apple: "/images/logo-icon.webp",
+  },
 };
 
 export default function RootLayout({
