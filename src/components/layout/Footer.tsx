@@ -99,11 +99,11 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <p>&copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
             <a
-              href="mailto:rizal.h33@gmail.com"
+              href="mailto:docs@lumizo.my.id"
               className="flex items-center gap-2 hover:text-foreground transition-colors"
             >
               <Mail className="h-4 w-4" />
-              rizal.h33@gmail.com
+              docs@lumizo.my.id
             </a>
             <p>Made with care for your business.</p>
           </div>

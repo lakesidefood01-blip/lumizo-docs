@@ -78,7 +78,7 @@ export default function TermsOfServicePage() {
           If you have any questions about these Terms of Service, please contact us at:
         </p>
         <p>
-          <strong>Email:</strong> <a href="mailto:rizal.h33@gmail.com" className="text-primary hover:underline">rizal.h33@gmail.com</a>
+          <strong>Email:</strong> <a href="mailto:docs@lumizo.my.id" className="text-primary hover:underline">docs@lumizo.my.id</a>
         </p>
       </div>
     </div>
