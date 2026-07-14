@@ -18,9 +18,72 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Lumizo Docs - Create Professional Business Documents",
+  title: {
+    default: "Lumizo Docs - Buat Dokumen Bisnis Profesional Gratis",
+    template: "%s | Lumizo Docs",
+  },
   description:
-    "Create professional invoices, quotations, receipts, delivery orders, and packing lists in seconds. Free, fast, and easy to use.",
+    "Buat invoice, quotation, kwitansi, surat jalan, packing list, dan slip gaji profesional dalam hitungan detik. Gratis, tanpa login, langsung download PDF.",
+  keywords: [
+    "invoice generator",
+    "quotation generator",
+    "receipt generator",
+    "surat jalan",
+    "packing list",
+    "slip gaji",
+    "dokumen bisnis",
+    "bikin invoice gratis",
+    "faktur online",
+    "kwitansi digital",
+    "tools bisnis gratis",
+    "UMKM tools",
+    "freelancer tools",
+  ],
+  authors: [{ name: "Lumizo Docs" }],
+  creator: "Lumizo Docs",
+  publisher: "Lumizo Docs",
+  metadataBase: new URL("https://lumizo-docs.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    url: "https://lumizo-docs.vercel.app",
+    siteName: "Lumizo Docs",
+    title: "Lumizo Docs - Buat Dokumen Bisnis Profesional Gratis",
+    description:
+      "Buat invoice, quotation, kwitansi, surat jalan, packing list, dan slip gaji profesional dalam hitungan detik. Gratis, tanpa login, langsung download PDF.",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Lumizo Docs - Dokumen Bisnis Gratis",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lumizo Docs - Buat Dokumen Bisnis Profesional Gratis",
+    description:
+      "Buat invoice, quotation, kwitansi, surat jalan, packing list, dan slip gaji profesional dalam hitungan detik. Gratis, tanpa login, langsung download PDF.",
+    images: ["/images/og-image.png"],
+    creator: "@lumizodocs",
+    site: "@lumizodocs",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: "/images/logo-icon.webp",
     apple: "/images/logo-icon.webp",

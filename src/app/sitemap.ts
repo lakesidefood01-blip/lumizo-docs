@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/receipt-generator`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.9 },
     { url: `${SITE_URL}/surat-jalan-generator`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.9 },
     { url: `${SITE_URL}/packing-list-generator`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.9 },
+    { url: `${SITE_URL}/slip-gaji-generator`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.9 },
     { url: `${SITE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.7 },
   ];
 
