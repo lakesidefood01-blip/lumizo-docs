@@ -13,6 +13,19 @@ import { Button } from "@/components/ui/button";
 import { Download, Printer } from "lucide-react";
 import { TemplateSelector } from "@/components/pdf/TemplateSelector";
 
+const base64ToUint8Array = (base64: string): Uint8Array => {
+  const dataUrl = base64;
+  const arr = dataUrl.split(",");
+  const mime = arr[0].match(/:(.*?);/)?.[1] || "image/png";
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return u8arr;
+};
+
 export default function InvoiceGeneratorPage() {
   const { profile } = useCompanyProfile();
   const { value: template } = useLocalStorage<PdfTemplate>("lumizo-pdf-template", "modern");
@@ -42,16 +55,69 @@ export default function InvoiceGeneratorPage() {
     };
 
     let y = 750;
+    let x = 50;
+
+    // Embed logo if available
+    if (profile.logo) {
+      try {
+        const logoBytes = base64ToUint8Array(profile.logo);
+        const logoImage = await pdfDoc.embedPng(logoBytes);
+        const logoWidth = 80;
+        const logoHeight = (logoImage.height / logoImage.width) * logoWidth;
+        page.drawImage(logoImage, {
+          x: 50,
+          y: y - logoHeight + 20,
+          width: logoWidth,
+          height: logoHeight,
+        });
+        x = 50 + logoWidth + 15;
+      } catch (e) {
+        console.error("Failed to embed logo:", e);
+      }
+    }
 
     // Company name
     page.drawText(profile.companyName || "Your Company", {
-      x: 50,
+      x,
       y,
       size: 20,
       font: fontBold,
       color: colors.primary,
     });
     y -= 25;
+
+    // Company details
+    const detailsX = x;
+    if (profile.address) {
+      page.drawText(profile.address, {
+        x: detailsX,
+        y,
+        size: 10,
+        font,
+        color: colors.lightText,
+      });
+      y -= 15;
+    }
+    if (profile.phone) {
+      page.drawText(`Phone: ${profile.phone}`, {
+        x: detailsX,
+        y,
+        size: 10,
+        font,
+        color: colors.lightText,
+      });
+      y -= 15;
+    }
+    if (profile.email) {
+      page.drawText(`Email: ${profile.email}`, {
+        x: detailsX,
+        y,
+        size: 10,
+        font,
+        color: colors.lightText,
+      });
+      y -= 15;
+    }
 
     // Company details
     if (profile.address) {
@@ -275,11 +341,20 @@ export default function InvoiceGeneratorPage() {
       <div className="aspect-[1/1.41] overflow-auto rounded border bg-white p-4 text-xs text-black">
         <div className="space-y-4">
           <div className="flex justify-between">
-            <div>
-              <p className="text-lg font-bold text-blue-600">{profile.companyName || "Company Name"}</p>
-              <p className="text-gray-500">{profile.address}</p>
-              <p className="text-gray-500">{profile.phone && `Phone: ${profile.phone}`}</p>
-              <p className="text-gray-500">{profile.email && `Email: ${profile.email}`}</p>
+            <div className="flex items-start gap-3">
+              {profile.logo && (
+                <img
+                  src={profile.logo}
+                  alt="Company Logo"
+                  className="h-16 w-16 object-contain"
+                />
+              )}
+              <div>
+                <p className="text-lg font-bold text-blue-600">{profile.companyName || "Company Name"}</p>
+                <p className="text-gray-500">{profile.address}</p>
+                <p className="text-gray-500">{profile.phone && `Phone: ${profile.phone}`}</p>
+                <p className="text-gray-500">{profile.email && `Email: ${profile.email}`}</p>
+              </div>
             </div>
             <div className="text-right">
               <p className="text-2xl font-bold text-blue-600">INVOICE</p>
