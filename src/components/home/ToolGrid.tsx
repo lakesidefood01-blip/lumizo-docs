@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { FileText, ClipboardList, Receipt, Truck, Package, ArrowRight } from "lucide-react";
+import { FileText, ClipboardList, Receipt, Truck, Package, Users, ArrowRight } from "lucide-react";
 import { GENERATORS } from "@/lib/constants";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -11,6 +11,7 @@ const iconMap: Record<string, React.ReactNode> = {
   Receipt: <Receipt className="h-6 w-6" />,
   Truck: <Truck className="h-6 w-6" />,
   Package: <Package className="h-6 w-6" />,
+  Users: <Users className="h-6 w-6" />,
 };
 
 export function ToolGrid() {

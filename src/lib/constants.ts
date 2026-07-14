@@ -34,6 +34,12 @@ export const GENERATORS = [
     description: "Create packing lists for shipment documentation.",
     icon: "Package",
   },
+  {
+    name: "Slip Gaji Generator",
+    slug: "slip-gaji-generator",
+    description: "Create professional payslips for your employees.",
+    icon: "Users",
+  },
 ] as const;
 
 export const BLOG_CATEGORIES = [
@@ -43,4 +49,6 @@ export const BLOG_CATEGORIES = [
   "Delivery Order Guides",
   "Packing List Guides",
   "Small Business Tips",
+  "Legal Documents",
+  "HR Documents",
 ] as const;
