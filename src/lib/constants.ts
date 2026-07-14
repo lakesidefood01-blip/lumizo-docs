@@ -1,7 +1,7 @@
 export const SITE_NAME = "Lumizo Docs";
 export const SITE_DESCRIPTION =
   "Create professional invoices, quotations, receipts, delivery orders, and packing lists in seconds.";
-export const SITE_URL = "https://lumizo-docs.vercel.app";
+export const SITE_URL = "https://docs.lumizo.my.id";
 
 export const GENERATORS = [
   {

@@ -42,14 +42,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Lumizo Docs" }],
   creator: "Lumizo Docs",
   publisher: "Lumizo Docs",
-  metadataBase: new URL("https://lumizo-docs.vercel.app"),
+  metadataBase: new URL("https://docs.lumizo.my.id"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://lumizo-docs.vercel.app",
+    url: "https://docs.lumizo.my.id",
     siteName: "Lumizo Docs",
     title: "Lumizo Docs - Buat Dokumen Bisnis Profesional Gratis",
     description:
