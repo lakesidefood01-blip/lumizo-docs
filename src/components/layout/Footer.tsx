@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Mail } from "lucide-react";
 import { GENERATORS, SITE_NAME } from "@/lib/constants";
 
 export function Footer() {
@@ -75,22 +76,37 @@ export function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <span className="text-sm text-muted-foreground">
+                <Link
+                  href="/privacy-policy"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Privacy Policy
-                </span>
+                </Link>
               </li>
               <li>
-                <span className="text-sm text-muted-foreground">
+                <Link
+                  href="/terms-of-service"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Terms of Service
-                </span>
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
-          <p>Made with care for your business.</p>
+        <div className="mt-12 pt-8 border-t border-border/50">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+            <p>&copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
+            <a
+              href="mailto:rizal.h33@gmail.com"
+              className="flex items-center gap-2 hover:text-foreground transition-colors"
+            >
+              <Mail className="h-4 w-4" />
+              rizal.h33@gmail.com
+            </a>
+            <p>Made with care for your business.</p>
+          </div>
         </div>
       </div>
     </footer>
