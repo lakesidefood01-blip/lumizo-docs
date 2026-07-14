@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,12 @@ import { Plus, Trash2 } from "lucide-react";
 import { invoiceSchema, type InvoiceFormData } from "@/features/invoice/schema";
 import { useCompanyProfile } from "@/features/company-profile/hooks/useCompanyProfile";
 import { formatCurrency } from "@/lib/pdf-generator";
+import { FormTip } from "@/components/forms/FormTip";
+import { useFormPersistence } from "@/hooks/useFormPersistence";
+
+interface InvoiceFormProps {
+  onSubmit: (data: InvoiceFormData) => void;
+}
 
 interface InvoiceFormProps {
   onSubmit: (data: InvoiceFormData) => void;
@@ -24,6 +31,7 @@ export function InvoiceForm({ onSubmit }: InvoiceFormProps) {
     control,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<InvoiceFormData>({
     resolver: zodResolver(invoiceSchema),
@@ -45,6 +53,22 @@ export function InvoiceForm({ onSubmit }: InvoiceFormProps) {
     },
   });
 
+  const { saveToStorage, clearStorage, restoreForm } = useFormPersistence<InvoiceFormData>({
+    key: "lumizo-invoice-form",
+    setValue: watch as any,
+    reset,
+  });
+
+  const handleSubmitForm = (data: InvoiceFormData) => {
+    clearStorage();
+    onSubmit(data);
+  };
+
+  // Restore form data from local storage on mount
+  useEffect(() => {
+    restoreForm();
+  }, []);
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "items",
@@ -53,6 +77,14 @@ export function InvoiceForm({ onSubmit }: InvoiceFormProps) {
   const items = watch("items");
   const discountPercent = watch("discountPercent");
   const taxPercent = watch("taxPercent");
+
+  // Auto-save form data to local storage
+  useEffect(() => {
+    const subscription = watch((data) => {
+      saveToStorage(data as InvoiceFormData);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, saveToStorage]);
 
   const subtotal = items.reduce(
     (sum, item) => sum + item.quantity * item.unitPrice,
@@ -64,7 +96,7 @@ export function InvoiceForm({ onSubmit }: InvoiceFormProps) {
   const grandTotal = taxableAmount + taxAmount;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(handleSubmitForm)} className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Invoice Information</CardTitle>
@@ -260,6 +292,8 @@ export function InvoiceForm({ onSubmit }: InvoiceFormProps) {
           />
         </CardContent>
       </Card>
+
+      <FormTip />
 
       <Button type="submit" size="lg" className="w-full">
         Generate Invoice

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Trash2 } from "lucide-react";
 import { packingListSchema, type PackingListFormData } from "@/features/packing-list/schema";
+import { FormTip } from "@/components/forms/FormTip";
+import { useFormPersistence } from "@/hooks/useFormPersistence";
 
 interface PackingListFormProps {
   onSubmit: (data: PackingListFormData) => void;
@@ -20,6 +23,7 @@ export function PackingListForm({ onSubmit }: PackingListFormProps) {
     control,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<PackingListFormData>({
     resolver: zodResolver(packingListSchema),
@@ -34,6 +38,21 @@ export function PackingListForm({ onSubmit }: PackingListFormProps) {
     },
   });
 
+  const { saveToStorage, clearStorage, restoreForm } = useFormPersistence<PackingListFormData>({
+    key: "lumizo-packing-list-form",
+    setValue: watch as any,
+    reset,
+  });
+
+  useEffect(() => {
+    restoreForm();
+  }, []);
+
+  const handleSubmitForm = (data: PackingListFormData) => {
+    clearStorage();
+    onSubmit(data);
+  };
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "items",
@@ -43,8 +62,15 @@ export function PackingListForm({ onSubmit }: PackingListFormProps) {
   const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalWeight = items.reduce((sum, item) => sum + item.weight, 0);
 
+  useEffect(() => {
+    const subscription = watch((data) => {
+      saveToStorage(data as PackingListFormData);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, saveToStorage]);
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(handleSubmitForm)} className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Packing List Information</CardTitle>
@@ -151,6 +177,8 @@ export function PackingListForm({ onSubmit }: PackingListFormProps) {
           <Textarea placeholder="Additional notes..." {...register("notes")} />
         </CardContent>
       </Card>
+
+      <FormTip />
 
       <Button type="submit" size="lg" className="w-full">
         Generate Packing List

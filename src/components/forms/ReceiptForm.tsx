@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { receiptSchema, type ReceiptFormData } from "@/features/receipt/schema";
 import { formatCurrency } from "@/lib/pdf-generator";
 import { numberToWords } from "@/lib/number-to-words";
+import { FormTip } from "@/components/forms/FormTip";
+import { useFormPersistence } from "@/hooks/useFormPersistence";
 
 interface ReceiptFormProps {
   onSubmit: (data: ReceiptFormData) => void;
@@ -20,6 +23,7 @@ export function ReceiptForm({ onSubmit }: ReceiptFormProps) {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<ReceiptFormData>({
     resolver: zodResolver(receiptSchema),
@@ -34,10 +38,32 @@ export function ReceiptForm({ onSubmit }: ReceiptFormProps) {
     },
   });
 
+  const { saveToStorage, clearStorage, restoreForm } = useFormPersistence<ReceiptFormData>({
+    key: "lumizo-receipt-form",
+    setValue: watch as any,
+    reset,
+  });
+
+  useEffect(() => {
+    restoreForm();
+  }, []);
+
+  const handleSubmitForm = (data: ReceiptFormData) => {
+    clearStorage();
+    onSubmit(data);
+  };
+
   const amount = watch("amount");
 
+  useEffect(() => {
+    const subscription = watch((data) => {
+      saveToStorage(data as ReceiptFormData);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, saveToStorage]);
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(handleSubmitForm)} className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Receipt Information</CardTitle>
@@ -111,6 +137,8 @@ export function ReceiptForm({ onSubmit }: ReceiptFormProps) {
           </div>
         </CardContent>
       </Card>
+
+      <FormTip />
 
       <Button type="submit" size="lg" className="w-full">
         Generate Receipt

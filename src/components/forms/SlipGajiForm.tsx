@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,8 @@ import { Plus, Trash2, Upload, Download } from "lucide-react";
 import { slipGajiSchema, type SlipGajiFormData } from "@/features/slip-gaji/schema";
 import { useCompanyProfile } from "@/features/company-profile/hooks/useCompanyProfile";
 import { formatCurrency } from "@/lib/pdf-generator";
+import { FormTip } from "@/components/forms/FormTip";
+import { useFormPersistence } from "@/hooks/useFormPersistence";
 
 interface SlipGajiFormProps {
   onSubmit: (data: SlipGajiFormData) => void;
@@ -27,6 +29,7 @@ export function SlipGajiForm({ onSubmit }: SlipGajiFormProps) {
     handleSubmit,
     watch,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<SlipGajiFormData>({
     resolver: zodResolver(slipGajiSchema),
@@ -46,6 +49,21 @@ export function SlipGajiForm({ onSubmit }: SlipGajiFormProps) {
       notes: "",
     },
   });
+
+  const { saveToStorage, clearStorage, restoreForm } = useFormPersistence<SlipGajiFormData>({
+    key: "lumizo-slip-gaji-form",
+    setValue: watch as any,
+    reset,
+  });
+
+  useEffect(() => {
+    restoreForm();
+  }, []);
+
+  const handleSubmitForm = (data: SlipGajiFormData) => {
+    clearStorage();
+    onSubmit(data);
+  };
 
   // CSV Import/Export functions
   const parseCSV = (csvText: string): Record<string, string> => {
@@ -146,6 +164,13 @@ export function SlipGajiForm({ onSubmit }: SlipGajiFormProps) {
   const bpjsEmploymentPercent = watch("bpjsEmployment") || 0;
   const taxPercent = watch("taxPercent") || 0;
 
+  useEffect(() => {
+    const subscription = watch((data) => {
+      saveToStorage(data as SlipGajiFormData);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, saveToStorage]);
+
   const totalAllowances = allowances.reduce((sum, item) => sum + (item?.amount || 0), 0);
   const grossPay = basicSalary + totalAllowances;
 
@@ -158,7 +183,7 @@ export function SlipGajiForm({ onSubmit }: SlipGajiFormProps) {
   const netPay = grossPay - totalDeductions;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(handleSubmitForm)} className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
@@ -409,6 +434,8 @@ export function SlipGajiForm({ onSubmit }: SlipGajiFormProps) {
           <Textarea placeholder="Additional notes..." {...register("notes")} />
         </CardContent>
       </Card>
+
+      <FormTip />
 
       <Button type="submit" size="lg" className="w-full">
         Generate Payslip

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Trash2 } from "lucide-react";
 import { deliveryOrderSchema, type DeliveryOrderFormData } from "@/features/delivery-order/schema";
+import { FormTip } from "@/components/forms/FormTip";
+import { useFormPersistence } from "@/hooks/useFormPersistence";
 
 interface DeliveryOrderFormProps {
   onSubmit: (data: DeliveryOrderFormData) => void;
@@ -19,6 +22,8 @@ export function DeliveryOrderForm({ onSubmit }: DeliveryOrderFormProps) {
     register,
     control,
     handleSubmit,
+    watch,
+    reset,
     formState: { errors },
   } = useForm<DeliveryOrderFormData>({
     resolver: zodResolver(deliveryOrderSchema),
@@ -35,13 +40,35 @@ export function DeliveryOrderForm({ onSubmit }: DeliveryOrderFormProps) {
     },
   });
 
+  const { saveToStorage, clearStorage, restoreForm } = useFormPersistence<DeliveryOrderFormData>({
+    key: "lumizo-delivery-order-form",
+    setValue: watch as any,
+    reset,
+  });
+
+  useEffect(() => {
+    restoreForm();
+  }, []);
+
+  const handleSubmitForm = (data: DeliveryOrderFormData) => {
+    clearStorage();
+    onSubmit(data);
+  };
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "items",
   });
 
+  useEffect(() => {
+    const subscription = watch((data) => {
+      saveToStorage(data as DeliveryOrderFormData);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, saveToStorage]);
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(handleSubmitForm)} className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Delivery Information</CardTitle>
@@ -142,6 +169,8 @@ export function DeliveryOrderForm({ onSubmit }: DeliveryOrderFormProps) {
           <Textarea placeholder="Additional notes..." {...register("notes")} />
         </CardContent>
       </Card>
+
+      <FormTip />
 
       <Button type="submit" size="lg" className="w-full">
         Generate Delivery Order

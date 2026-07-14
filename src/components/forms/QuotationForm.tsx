@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Trash2 } from "lucide-react";
 import { quotationSchema, type QuotationFormData } from "@/features/quotation/schema";
 import { formatCurrency } from "@/lib/pdf-generator";
+import { FormTip } from "@/components/forms/FormTip";
+import { useFormPersistence } from "@/hooks/useFormPersistence";
 
 interface QuotationFormProps {
   onSubmit: (data: QuotationFormData) => void;
@@ -21,6 +24,7 @@ export function QuotationForm({ onSubmit }: QuotationFormProps) {
     control,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<QuotationFormData>({
     resolver: zodResolver(quotationSchema),
@@ -44,6 +48,21 @@ export function QuotationForm({ onSubmit }: QuotationFormProps) {
     },
   });
 
+  const { saveToStorage, clearStorage, restoreForm } = useFormPersistence<QuotationFormData>({
+    key: "lumizo-quotation-form",
+    setValue: watch as any,
+    reset,
+  });
+
+  useEffect(() => {
+    restoreForm();
+  }, []);
+
+  const handleSubmitForm = (data: QuotationFormData) => {
+    clearStorage();
+    onSubmit(data);
+  };
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "items",
@@ -52,6 +71,13 @@ export function QuotationForm({ onSubmit }: QuotationFormProps) {
   const items = watch("items");
   const discountPercent = watch("discountPercent");
   const taxPercent = watch("taxPercent");
+
+  useEffect(() => {
+    const subscription = watch((data) => {
+      saveToStorage(data as QuotationFormData);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, saveToStorage]);
 
   const subtotal = items.reduce(
     (sum, item) => sum + item.quantity * item.unitPrice,
@@ -63,7 +89,7 @@ export function QuotationForm({ onSubmit }: QuotationFormProps) {
   const grandTotal = taxableAmount + taxAmount;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(handleSubmitForm)} className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Quotation Information</CardTitle>
@@ -262,6 +288,8 @@ export function QuotationForm({ onSubmit }: QuotationFormProps) {
           </div>
         </CardContent>
       </Card>
+
+      <FormTip />
 
       <Button type="submit" size="lg" className="w-full">
         Generate Quotation
