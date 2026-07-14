@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Lumizo Docs",
   },
   description:
-    "Buat invoice, quotation, kwitansi, surat jalan, packing list, dan slip gaji profesional dalam hitungan detik. Gratis, tanpa login, langsung download PDF.",
+    "Buat invoice, quotation, kwitansi, dan dokumen bisnis lainnya secara gratis. Tanpa login, langsung download PDF.",
   keywords: [
     "invoice generator",
     "quotation generator",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "Lumizo Docs",
     title: "Lumizo Docs - Buat Dokumen Bisnis Profesional Gratis",
     description:
-      "Buat invoice, quotation, kwitansi, surat jalan, packing list, dan slip gaji profesional dalam hitungan detik. Gratis, tanpa login, langsung download PDF.",
+      "Buat invoice, quotation, kwitansi, dan dokumen bisnis lainnya secara gratis. Tanpa login, langsung download PDF.",
     images: [
       {
         url: "/images/og-image.png",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lumizo Docs - Buat Dokumen Bisnis Profesional Gratis",
     description:
-      "Buat invoice, quotation, kwitansi, surat jalan, packing list, dan slip gaji profesional dalam hitungan detik. Gratis, tanpa login, langsung download PDF.",
+      "Buat invoice, quotation, kwitansi, dan dokumen bisnis lainnya secara gratis. Tanpa login, langsung download PDF.",
     images: ["/images/og-image.png"],
     creator: "@lumizodocs",
     site: "@lumizodocs",
