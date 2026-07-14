@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -35,6 +35,32 @@ interface CompanyProfileFormProps {
   onImport: (json: string) => boolean;
 }
 
+const compressImage = (base64: string, maxWidth = 800, quality = 0.7): Promise<string> => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      let width = img.width;
+      let height = img.height;
+
+      if (width > maxWidth) {
+        height = (height * maxWidth) / width;
+        width = maxWidth;
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+
+      const ctx = canvas.getContext("2d");
+      ctx?.drawImage(img, 0, 0, width, height);
+
+      const compressed = canvas.toDataURL("image/jpeg", quality);
+      resolve(compressed);
+    };
+    img.src = base64;
+  });
+};
+
 export function CompanyProfileForm({
   profile,
   onSave,
@@ -52,39 +78,53 @@ export function CompanyProfileForm({
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: profile,
   });
 
+  useEffect(() => {
+    reset(profile);
+  }, [profile, reset]);
+
   const logo = watch("logo");
   const signature = watch("signature");
 
-  const handleFileUpload = (
+  const handleFileUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
     field: "logo" | "signature"
   ) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        setAlert({ type: "error", message: "File size must be less than 2MB." });
+      if (file.size > 5 * 1024 * 1024) {
+        setAlert({ type: "error", message: "File size must be less than 5MB." });
         return;
       }
 
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const base64 = event.target?.result as string;
-        setValue(field, base64, { shouldValidate: true });
+      setAlert({ type: "success", message: "Processing image..." });
 
-        setTimeout(() => {
-          try {
-            onSave({ [field]: base64 });
-            setAlert({ type: "success", message: "File uploaded successfully!" });
-          } catch {
-            setAlert({ type: "error", message: "Failed to upload file. Please try again." });
-          }
-        }, 100);
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        try {
+          const base64 = event.target?.result as string;
+          const maxWidth = field === "logo" ? 400 : 600;
+          const compressed = await compressImage(base64, maxWidth, 0.7);
+
+          setValue(field, compressed, { shouldValidate: true });
+
+          setTimeout(() => {
+            try {
+              onSave({ [field]: compressed });
+              setAlert({ type: "success", message: "File uploaded successfully!" });
+            } catch {
+              setAlert({ type: "error", message: "Failed to save file. Please try again." });
+            }
+          }, 100);
+        } catch {
+          setAlert({ type: "error", message: "Failed to process image. Please try again." });
+        }
       };
       reader.onerror = () => {
         setAlert({ type: "error", message: "Failed to read file. Please try again." });
