@@ -130,7 +130,8 @@ export default function QuotationGeneratorPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `quotation-${formData.quotationNumber}.pdf`;
+    const companyName = (profile.companyName || "Company").replace(/[^a-zA-Z0-9]/g, "");
+    a.download = `${companyName}_${formData.quotationNumber}.pdf`;
     a.click();
     URL.revokeObjectURL(url);
   };

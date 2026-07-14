@@ -146,7 +146,8 @@ export default function SlipGajiGeneratorPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `payslip-${formData.employeeId}-${formData.payPeriod.replace(/\s/g, "-")}.pdf`;
+    const companyName = (profile.companyName || "Company").replace(/[^a-zA-Z0-9]/g, "");
+    a.download = `${companyName}_${formData.employeeId}.pdf`;
     a.click();
     URL.revokeObjectURL(url);
   };

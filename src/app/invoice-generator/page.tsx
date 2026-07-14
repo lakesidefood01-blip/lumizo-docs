@@ -215,7 +215,8 @@ export default function InvoiceGeneratorPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `invoice-${formData.invoiceNumber}.pdf`;
+    const companyName = (profile.companyName || "Company").replace(/[^a-zA-Z0-9]/g, "");
+    a.download = `${companyName}_${formData.invoiceNumber}.pdf`;
     a.click();
     URL.revokeObjectURL(url);
   };

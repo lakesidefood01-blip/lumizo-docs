@@ -45,7 +45,12 @@ export default function DeliveryOrderGeneratorPage() {
 
     page.drawText("Delivery Address:", { x: 50, y, size: 10, font: fontBold, color: colors.text });
     y -= 15;
-    page.drawText(formData.deliveryAddress, { x: 50, y, size: 10, font, color: colors.text });
+    // Wrap delivery address
+    const addressLines = formData.deliveryAddress.match(/.{1,50}/g) || [formData.deliveryAddress];
+    for (const line of addressLines.slice(0, 2)) {
+      page.drawText(line, { x: 50, y, size: 10, font, color: colors.text });
+      y -= 12;
+    }
 
     y -= 20;
 
@@ -97,7 +102,8 @@ export default function DeliveryOrderGeneratorPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `delivery-order-${formData.deliveryNumber}.pdf`;
+    const companyName = (profile.companyName || "Company").replace(/[^a-zA-Z0-9]/g, "");
+    a.download = `${companyName}_${formData.deliveryNumber}.pdf`;
     a.click();
     URL.revokeObjectURL(url);
   };

@@ -93,7 +93,8 @@ export default function PackingListGeneratorPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `packing-list-${formData.packingListNumber}.pdf`;
+    const companyName = (profile.companyName || "Company").replace(/[^a-zA-Z0-9]/g, "");
+    a.download = `${companyName}_${formData.packingListNumber}.pdf`;
     a.click();
     URL.revokeObjectURL(url);
   };

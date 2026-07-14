@@ -88,7 +88,8 @@ export default function ReceiptGeneratorPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `receipt-${formData.receiptNumber}.pdf`;
+    const companyName = (profile.companyName || "Company").replace(/[^a-zA-Z0-9]/g, "");
+    a.download = `${companyName}_${formData.receiptNumber}.pdf`;
     a.click();
     URL.revokeObjectURL(url);
   };
