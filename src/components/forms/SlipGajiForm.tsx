@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -7,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Upload, Download } from "lucide-react";
 import { slipGajiSchema, type SlipGajiFormData } from "@/features/slip-gaji/schema";
 import { useCompanyProfile } from "@/features/company-profile/hooks/useCompanyProfile";
 import { formatCurrency } from "@/lib/pdf-generator";
@@ -18,12 +19,14 @@ interface SlipGajiFormProps {
 
 export function SlipGajiForm({ onSubmit }: SlipGajiFormProps) {
   const { profile } = useCompanyProfile();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
     control,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<SlipGajiFormData>({
     resolver: zodResolver(slipGajiSchema),
@@ -43,6 +46,88 @@ export function SlipGajiForm({ onSubmit }: SlipGajiFormProps) {
       notes: "",
     },
   });
+
+  // CSV Import/Export functions
+  const parseCSV = (csvText: string): Record<string, string> => {
+    const lines = csvText.split("\n").filter((line) => line.trim());
+    if (lines.length < 2) return {};
+
+    const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
+    const values = lines[1].split(",").map((v) => v.trim());
+
+    const data: Record<string, string> = {};
+    headers.forEach((header, index) => {
+      data[header] = values[index] || "";
+    });
+    return data;
+  };
+
+  const handleImportCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const text = e.target?.result as string;
+      const data = parseCSV(text);
+
+      if (data.name) setValue("employeeName", data.name);
+      if (data.id) setValue("employeeId", data.id);
+      if (data.position) setValue("position", data.position);
+      if (data.department) setValue("department", data.department);
+      if (data.salary) setValue("basicSalary", Number(data.salary) || 0);
+      if (data.transport) {
+        setValue("allowances", [
+          { id: crypto.randomUUID(), name: "Transport", amount: Number(data.transport) || 0 },
+        ]);
+      }
+      if (data.bpjs_health) setValue("bpjsHealth", Number(data.bpjs_health) || 0);
+      if (data.bpjs_employment) setValue("bpjsEmployment", Number(data.bpjs_employment) || 0);
+      if (data.tax) setValue("taxPercent", Number(data.tax) || 0);
+      if (data.notes) setValue("notes", data.notes);
+    };
+    reader.readAsText(file);
+    event.target.value = "";
+  };
+
+  const handleExportCSV = () => {
+    const formData = watch();
+    const headers = [
+      "name",
+      "id",
+      "position",
+      "department",
+      "salary",
+      "transport",
+      "bpjs_health",
+      "bpjs_employment",
+      "tax",
+      "notes",
+    ];
+
+    const transportAllowance = formData.allowances?.find((a) => a.name === "Transport");
+    const values = [
+      formData.employeeName,
+      formData.employeeId,
+      formData.position,
+      formData.department || "",
+      formData.basicSalary,
+      transportAllowance?.amount || 0,
+      formData.bpjsHealth || 0,
+      formData.bpjsEmployment || 0,
+      formData.taxPercent || 0,
+      formData.notes || "",
+    ];
+
+    const csvContent = [headers.join(","), values.join(",")].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `slip-gaji-${formData.employeeId}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
 
   const { fields: allowanceFields, append: appendAllowance, remove: removeAllowance } = useFieldArray({
     control,
@@ -76,7 +161,36 @@ export function SlipGajiForm({ onSubmit }: SlipGajiFormProps) {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Employee Information</CardTitle>
+          <CardTitle className="flex items-center justify-between">
+            Employee Information
+            <div className="flex gap-2">
+              <input
+                type="file"
+                ref={fileInputRef}
+                accept=".csv"
+                onChange={handleImportCSV}
+                className="hidden"
+              />
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <Upload className="mr-2 h-4 w-4" />
+                Import CSV
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={handleExportCSV}
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Export CSV
+              </Button>
+            </div>
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
