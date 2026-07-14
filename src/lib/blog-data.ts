@@ -321,6 +321,120 @@ export const blogPosts: BlogPost[] = [
     category: "Small Business Tips",
     date: "2023-12-28",
   },
+  {
+    slug: "cara-membuat-slip-gaji-yang-benar",
+    title: "Cara Membuat Slip Gaji yang Benar dan Lengkap",
+    excerpt: "Panduan praktis menyusun slip gaji yang transparan dan sesuai ketentuan perundang-undangan ketenagakerjaan.",
+    content: `
+      <p>Slip gaji atau payslip adalah dokumen yang dikeluarkan perusahaan kepada karyawan setiap periode pembayaran gaji. Dokumen ini memuat rincian pendapatan, potongan, dan total gaji bersih yang diterima karyawan. Slip gaji bukan sekadar formalitas — ini adalah bukti transparansi keuangan antara perusahaan dan karyawan.</p>
+
+      <p>Selain slip gaji, pastikan Anda juga memiliki dokumen bisnis lainnya. Kunjungi <a href="/invoice-generator" class="text-primary underline hover:text-primary/80">Invoice Generator</a> untuk membuat faktur penagihan yang profesional.</p>
+
+      <h2>Mengapa Slip Gaji Penting?</h2>
+
+      <p>Banyak perusahaan yang menganggap slip gaji sebagai dokumen sepele. Padahal, dokumen ini memiliki peran krusial bagi kedua belah pihak:</p>
+
+      <ul>
+        <li><strong>Bukti pembayaran</strong> — Menjadi catatan resmi bahwa perusahaan telah membayarkan hak karyawan</li>
+        <li><strong>Transparansi</strong> — Karyawan memahami dengan jelas komponen gaji dan potongannya</li>
+        <li><strong>Kepatuhan pajak</strong> — Menjadi dasar pelaporan PPh 21 dan kewajiban perpajakan lainnya</li>
+        <li><strong>Rujukan keuangan</strong> — Diperlukan saat mengajukan kredit, pinjaman, atau keperluan administrasi lainnya</li>
+        <li><strong>Bukti hukum</strong> — Menjadi bukti sah jika terjadi sengketa ketenagakerjaan</li>
+      </ul>
+
+      <h2>Elemen Wajib dalam Slip Gaji</h2>
+
+      <p>Slip gaji yang lengkap dan sah harus memuat beberapa informasi berikut:</p>
+
+      <h3>1. Identitas Perusahaan</h3>
+      <p>Cantumkan nama perusahaan, alamat, dan logo resmi. Elemen ini memberikan kejelasan mengenai identitas pemberi kerja.</p>
+
+      <h3>2. Data Karyawan</h3>
+      <p>Sertakan nama lengkap karyawan, nomor induk karyawan (NIK), dan posisi atau jabatan. Data ini memastikan slip gaji diterbitkan untuk orang yang tepat.</p>
+
+      <h3>3. Periode Gaji</h3>
+      <p>Tulis bulan dan tahun periode gaji yang dibayarkan, misalnya "Januari 2024" atau "1-31 Januari 2024". Periode yang jelas menghindari kebingungan jika ada retroaktif atau pembayaran sebagian.</p>
+
+      <h3>4. Pendapatan (Income)</h3>
+      <p>Rincian seluruh komponen pendapatan yang diterima karyawan:</p>
+
+      <ul>
+        <li><strong>Gaji pokok</strong> — Upah dasar sesuai kontrak kerja</li>
+        <li><strong>Tunjangan tetap</strong> — Tunjangan transportasi, makan, komunikasi, atau tunjangan lainnya yang bersifat rutin</li>
+        <li><strong>Tunjangan tidak tetap</strong> — Tunjangan yang bergantung pada kinerja, seperti bonus atau insentif</li>
+        <li><strong>Lembur</strong> — Upah tambahan untuk jam kerja melebihi ketentuan</li>
+      </ul>
+
+      <h3>5. Potongan (Deductions)</h3>
+      <p>Rincian seluruh potongan yang dikenakan pada gaji karyawan:</p>
+
+      <ul>
+        <li><strong>BPJS Kesehatan</strong> — Iuran jaminan kesehatan (biasanya 4% dari gaji)</li>
+        <li><strong>BPJS Ketenagakerjaan</strong> — Iuran jaminan hari tua, jaminan kecelakaan kerja, dan jaminan kematian</li>
+        <li><strong>PPh 21</strong> — Pajak penghasilan yang dipotong oleh perusahaan</li>
+        <li><strong>Potongan lainnya</strong> — Pinjaman karyawan, denda, atau potongan lain yang telah disepakati</li>
+      </ul>
+
+      <h3>6. Total Pendapatan Kotor (Gross Pay)</h3>
+      <p>Jumlah seluruh pendapatan sebelum dipotong. Angka ini menunjukkan nilai total yang seharusnya menjadi hak karyawan.</p>
+
+      <h3>7. Total Potongan</h3>
+      <p>Jumlah seluruh potongan yang dikenakan. Transparansi di bagian ini sangat penting agar karyawan memahami mengapa gaji mereka berkurang.</p>
+
+      <h3>8. Gaji Bersih (Net Pay)</h3>
+      <p>Total pendapatan kotor dikurangi total potongan. Ini adalah jumlah final yang akan diterima karyawan.</p>
+
+      <h2>Contoh Rincian Slip Gaji</h2>
+
+      <p>Berikut ilustrasi rincian yang umum ditemukan dalam slip gaji:</p>
+
+      <p><strong>Pendapatan:</strong></p>
+      <ul>
+        <li>Gaji Pokok: Rp 5.000.000</li>
+        <li>Tunjangan Transportasi: Rp 500.000</li>
+        <li>Tunjangan Makan: Rp 300.000</li>
+        <li><strong>Total Pendapatan: Rp 5.800.000</strong></li>
+      </ul>
+
+      <p><strong>Potongan:</strong></p>
+      <ul>
+        <li>BPJS Kesehatan (4%): Rp 232.000</li>
+        <li>BPJS Ketenagakerjaan (2%): Rp 116.000</li>
+        <li>PPh 21: Rp 150.000</li>
+        <li><strong>Total Potongan: Rp 498.000</strong></li>
+      </ul>
+
+      <p><strong>Gaji Bersih: Rp 5.302.000</strong></p>
+
+      <h2>Kesalahan Umum dalam Pembuatan Slip Gaji</h2>
+
+      <h3>1. Tidak Memberikan Slip Gaji</h3>
+      <p>Banyak perusahaan kecil yang tidak menerbitkan slip gaji secara rutin. Padahal, ini adalah hak karyawan dan dapat menjadi masalah hukum jika diperiksa oleh ketenagakerjaan.</p>
+
+      <h3>2. Rincian Tidak Lengkap</h3>
+      <p>Slip gaji yang hanya mencantumkan total gaji tanpa rincian pendapatan dan potongan tidak memberikan transparansi. Karyawan berhak mengetahui dari mana angka gaji bersih mereka berasal.</p>
+
+      <h3>3. Salah Hitung Potongan</h3>
+      <p>Kesalahan dalam menghitung BPJS atau PPh 21 dapat menimbulkan masalah bagi perusahaan dan karyawan. Pastikan perhitungan sesuai dengan ketentuan perundang-undangan yang berlaku.</p>
+
+      <h3>4. Tidak Menyimpan Arsip</h3>
+      <p>Perusahaan wajib menyimpan salinan slip gaji untuk keperluan audit dan pelaporan pajak. Buat sistem arsip digital yang terorganisir untuk memudahkan pencarian data.</p>
+
+      <h2>Tips Membuat Slip Gaji yang Efektif</h2>
+
+      <ol>
+        <li><strong>Gunakan format konsisten</strong> — Template yang seragam memudahkan proses administrasi dan membaca data</li>
+        <li><strong>Kirim tepat waktu</strong> — Slip gaji harus diterbitkan bersamaan dengan pembayaran gaji</li>
+        <li><strong>Sertakan kontak HRD</strong> — Jika ada pertanyaan mengenai slip gaji, karyawan tahu harus menghubungi siapa</li>
+        <li><strong>Gunakan format digital</strong> — PDF atau email lebih efisien dan ramah lingkungan dibanding cetak fisik</li>
+        <li><strong>Verifikasi sebelum kirim</strong> — Periksa ulang semua angka untuk menghindari kesalahan hitung</li>
+      </ol>
+
+      <p>Slip gaji yang disusun dengan benar dan transparan tidak hanya memenuhi kewajiban hukum perusahaan, tetapi juga membangun kepercayaan antara perusahaan dan karyawan. Pastikan setiap periode gaji, slip gaji dikirimkan secara lengkap dan akurat kepada seluruh karyawan.</p>
+    `,
+    category: "HR Documents",
+    date: "2024-01-25",
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
