@@ -67,16 +67,27 @@ export function CompanyProfileForm({
   ) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        setAlert({ type: "error", message: "File size must be less than 2MB." });
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (event) => {
         const base64 = event.target?.result as string;
         setValue(field, base64, { shouldValidate: true });
-        try {
-          onSave({ [field]: base64 });
-          setAlert({ type: "success", message: "File uploaded successfully!" });
-        } catch {
-          setAlert({ type: "error", message: "Failed to upload file. Please try again." });
-        }
+
+        setTimeout(() => {
+          try {
+            onSave({ [field]: base64 });
+            setAlert({ type: "success", message: "File uploaded successfully!" });
+          } catch {
+            setAlert({ type: "error", message: "Failed to upload file. Please try again." });
+          }
+        }, 100);
+      };
+      reader.onerror = () => {
+        setAlert({ type: "error", message: "Failed to read file. Please try again." });
       };
       reader.readAsDataURL(file);
     }
@@ -84,7 +95,14 @@ export function CompanyProfileForm({
 
   const onSubmit = (data: FormData) => {
     try {
-      onSave(data);
+      const currentLogo = watch("logo");
+      const currentSignature = watch("signature");
+      const saveData = {
+        ...data,
+        logo: currentLogo || data.logo || "",
+        signature: currentSignature || data.signature || "",
+      };
+      onSave(saveData);
       setAlert({ type: "success", message: "Company profile saved successfully!" });
     } catch {
       setAlert({ type: "error", message: "Failed to save profile. Please try again." });
