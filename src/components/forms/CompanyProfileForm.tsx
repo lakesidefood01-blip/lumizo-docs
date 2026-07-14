@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert } from "@/components/ui/alert";
 import { Download, Upload, Trash2, Save } from "lucide-react";
 import type { CompanyProfile } from "@/types";
 
@@ -44,6 +45,7 @@ export function CompanyProfileForm({
   const logoInputRef = useRef<HTMLInputElement>(null);
   const signatureInputRef = useRef<HTMLInputElement>(null);
   const importInputRef = useRef<HTMLInputElement>(null);
+  const [alert, setAlert] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
   const {
     register,
@@ -69,14 +71,24 @@ export function CompanyProfileForm({
       reader.onload = (event) => {
         const base64 = event.target?.result as string;
         setValue(field, base64, { shouldValidate: true });
-        onSave({ [field]: base64 });
+        try {
+          onSave({ [field]: base64 });
+          setAlert({ type: "success", message: "File uploaded successfully!" });
+        } catch {
+          setAlert({ type: "error", message: "Failed to upload file. Please try again." });
+        }
       };
       reader.readAsDataURL(file);
     }
   };
 
   const onSubmit = (data: FormData) => {
-    onSave(data);
+    try {
+      onSave(data);
+      setAlert({ type: "success", message: "Company profile saved successfully!" });
+    } catch {
+      setAlert({ type: "error", message: "Failed to save profile. Please try again." });
+    }
   };
 
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,7 +97,12 @@ export function CompanyProfileForm({
       const reader = new FileReader();
       reader.onload = (event) => {
         const json = event.target?.result as string;
-        onImport(json);
+        const success = onImport(json);
+        if (success) {
+          setAlert({ type: "success", message: "Profile imported successfully!" });
+        } else {
+          setAlert({ type: "error", message: "Failed to import profile. Invalid JSON format." });
+        }
       };
       reader.readAsText(file);
     }
@@ -93,6 +110,14 @@ export function CompanyProfileForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {alert && (
+        <Alert
+          type={alert.type}
+          message={alert.message}
+          onClose={() => setAlert(null)}
+        />
+      )}
+
       <Card>
         <CardHeader>
           <CardTitle>Company Information</CardTitle>
@@ -246,7 +271,18 @@ export function CompanyProfileForm({
           className="hidden"
           onChange={handleImport}
         />
-        <Button type="button" variant="destructive" onClick={onDelete}>
+        <Button
+          type="button"
+          variant="destructive"
+          onClick={() => {
+            try {
+              onDelete();
+              setAlert({ type: "success", message: "Profile deleted successfully!" });
+            } catch {
+              setAlert({ type: "error", message: "Failed to delete profile." });
+            }
+          }}
+        >
           <Trash2 className="mr-2 h-4 w-4" />
           Delete Profile
         </Button>
