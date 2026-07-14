@@ -12,14 +12,14 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo-full.webp"
               alt="Lumizo Docs"
               width={300}
               height={90}
-              className="h-12 w-auto"
+              className="h-14 w-auto"
               priority
             />
           </Link>
