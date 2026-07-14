@@ -118,14 +118,15 @@ export default function SlipGajiGeneratorPage() {
 
     y -= 10;
     page.drawLine({ start: { x: 50, y }, end: { x: 545, y }, thickness: 1, color: colors.primary });
-    y -= 15;
+    y -= 18;
     page.drawText("Total Deductions", { x: 50, y, size: 10, font: fontBold, color: colors.text });
     page.drawText(formatCurrency(totalDeductions), { x: 400, y, size: 10, font: fontBold, color: colors.red });
 
-    y -= 40;
+    y -= 30;
 
     // Net pay
-    page.drawLine({ start: { x: 50, y: y + 10 }, end: { x: 545, y: y + 10 }, thickness: 2, color: colors.primary });
+    page.drawLine({ start: { x: 50, y }, end: { x: 545, y }, thickness: 2, color: colors.primary });
+    y -= 20;
     page.drawText("NET PAY", { x: 50, y, size: 14, font: fontBold, color: colors.primary });
     page.drawText(formatCurrency(netPay), { x: 380, y, size: 14, font: fontBold, color: colors.green });
 
