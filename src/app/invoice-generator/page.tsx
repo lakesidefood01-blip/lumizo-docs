@@ -188,14 +188,14 @@ export default function InvoiceGeneratorPage() {
       y -= 15;
     }
 
-    y -= 5;
+    y -= 2;
     page.drawLine({
       start: { x: 370, y },
       end: { x: 545, y },
       thickness: 1,
       color: colors.primary,
     });
-    y -= 20;
+    y -= 18;
     page.drawText("Grand Total:", { x: 370, y, size: 12, font: fontBold, color: colors.primary });
     page.drawText(formatCurrency(grandTotal), { x: 470, y, size: 12, font: fontBold, color: colors.primary });
 
