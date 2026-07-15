@@ -40,6 +40,12 @@ export const GENERATORS = [
     description: "Create professional payslips for your employees.",
     icon: "Users",
   },
+  {
+    name: "Offering Letter Generator",
+    slug: "offering-letter-generator",
+    description: "Create professional job offering letters for candidates.",
+    icon: "FileCheck",
+  },
 ] as const;
 
 export const BLOG_CATEGORIES = [

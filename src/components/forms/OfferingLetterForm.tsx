@@ -1,0 +1,191 @@
+"use client";
+
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { FormTip } from "@/components/forms/FormTip";
+import { useFormPersistence } from "@/hooks/useFormPersistence";
+import { offeringLetterSchema, type OfferingLetterFormData } from "@/features/offering-letter/schema";
+import { formatCurrency } from "@/lib/pdf-generator";
+
+interface OfferingLetterFormProps {
+  onSubmit: (data: OfferingLetterFormData) => void;
+}
+
+export function OfferingLetterForm({ onSubmit }: OfferingLetterFormProps) {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<OfferingLetterFormData>({
+    resolver: zodResolver(offeringLetterSchema),
+    defaultValues: {
+      letterNumber: `OL-${Date.now()}`,
+      date: new Date().toISOString().split("T")[0],
+      candidateName: "",
+      position: "",
+      department: "",
+      salary: 0,
+      benefits: "",
+      startDate: "",
+      workLocation: "",
+      workingHours: "09:00 - 17:00",
+      probationPeriod: "3 bulan",
+      notes: "",
+    },
+  });
+
+  const { saveToStorage, clearStorage, restoreForm } = useFormPersistence<OfferingLetterFormData>({
+    key: "lumizo-offering-letter-form",
+    setValue: watch as any,
+    reset,
+  });
+
+  useEffect(() => {
+    restoreForm();
+  }, []);
+
+  const handleSubmitForm = (data: OfferingLetterFormData) => {
+    clearStorage();
+    onSubmit(data);
+  };
+
+  useEffect(() => {
+    const subscription = watch((data) => {
+      saveToStorage(data as OfferingLetterFormData);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, saveToStorage]);
+
+  return (
+    <form onSubmit={handleSubmit(handleSubmitForm)} className="space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle>Letter Information</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="letterNumber">Letter Number *</Label>
+              <Input id="letterNumber" {...register("letterNumber")} />
+              {errors.letterNumber && (
+                <p className="text-sm text-destructive">{errors.letterNumber.message}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="date">Date *</Label>
+              <Input id="date" type="date" {...register("date")} />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Candidate Information</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="candidateName">Candidate Name *</Label>
+            <Input id="candidateName" {...register("candidateName")} placeholder="Full name" />
+            {errors.candidateName && (
+              <p className="text-sm text-destructive">{errors.candidateName.message}</p>
+            )}
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="position">Position *</Label>
+              <Input id="position" {...register("position")} placeholder="e.g. Marketing Manager" />
+              {errors.position && (
+                <p className="text-sm text-destructive">{errors.position.message}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="department">Department</Label>
+              <Input id="department" {...register("department")} placeholder="e.g. Marketing" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Employment Details</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="salary">Monthly Salary *</Label>
+              <Input
+                id="salary"
+                type="number"
+                min="0"
+                {...register("salary", { valueAsNumber: true })}
+              />
+              {errors.salary && (
+                <p className="text-sm text-destructive">{errors.salary.message}</p>
+              )}
+              {watch("salary") > 0 && (
+                <p className="text-xs text-muted-foreground">{formatCurrency(watch("salary"))}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="startDate">Start Date *</Label>
+              <Input id="startDate" type="date" {...register("startDate")} />
+              {errors.startDate && (
+                <p className="text-sm text-destructive">{errors.startDate.message}</p>
+              )}
+            </div>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="workLocation">Work Location</Label>
+              <Input id="workLocation" {...register("workLocation")} placeholder="e.g. Jakarta Office" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="workingHours">Working Hours</Label>
+              <Input id="workingHours" {...register("workingHours")} placeholder="e.g. 09:00 - 17:00" />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="probationPeriod">Probation Period</Label>
+            <Input id="probationPeriod" {...register("probationPeriod")} placeholder="e.g. 3 bulan" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="benefits">Benefits</Label>
+            <Textarea
+              id="benefits"
+              {...register("benefits")}
+              placeholder="e.g. BPJS Kesehatan, Tunjangan Transport, THR"
+            />
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Additional Notes</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Textarea
+            placeholder="Additional notes or conditions..."
+            {...register("notes")}
+          />
+        </CardContent>
+      </Card>
+
+      <FormTip />
+
+      <Button type="submit" size="lg" className="w-full">
+        Generate Offering Letter
+      </Button>
+    </form>
+  );
+}

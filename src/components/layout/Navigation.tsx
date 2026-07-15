@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, FileText, ClipboardList, Receipt, Truck, Package, Users } from "lucide-react";
+import { Menu, X, FileText, ClipboardList, Receipt, Truck, Package, Users, FileCheck } from "lucide-react";
 import { GENERATORS } from "@/lib/constants";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -13,6 +13,7 @@ const iconMap: Record<string, React.ReactNode> = {
   Truck: <Truck className="h-4 w-4" />,
   Package: <Package className="h-4 w-4" />,
   Users: <Users className="h-4 w-4" />,
+  FileCheck: <FileCheck className="h-4 w-4" />,
 };
 
 export function Navigation() {
