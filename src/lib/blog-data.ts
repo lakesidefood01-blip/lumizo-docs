@@ -435,6 +435,72 @@ export const blogPosts: BlogPost[] = [
     category: "HR Documents",
     date: "2024-01-25",
   },
+  {
+    slug: "tips-mengelola-arus-kas-umkm",
+    title: "Tips Mengelola Arus Kas untuk UMKM agar Usaha Tetap Sehat",
+    excerpt: "Pelajari cara mengelola arus kas UMKM yang efektif agar operasional bisnis berjalan lancar dan terhindar dari masalah keuangan.",
+    content: `
+      <p>Arus kas atau cash flow adalah nyawa bagi setiap usaha, terutama UMKM. Banyak bisnis yang sebenarnya memiliki produk bagus dan pelanggan tetap, namun gagal karena tidak mampu mengelola arus kas dengan baik. Artikel ini akan membahas tips mengelola arus kas untuk UMKM agar usaha tetap sehat dan berkembang.</p>
+
+      <h2>Apa itu Arus Kas dan Mengapa Penting untuk UMKM?</h2>
+
+      <p>Arus kas adalah pergerakan uang masuk dan keluar dari bisnis Anda dalam periode waktu tertentu. Untuk UMKM, mengelola arus kas dengan baik sangat penting karena:</p>
+
+      <ul>
+        <li>Memastikan ketersediaan uang untuk operasional harian</li>
+        <li>Membayar tagihan tepat waktu kepada supplier</li>
+        <li>Menghindari utang yang berlebihan</li>
+        <li>Mempersiapkan dana darurat untuk kondisi tak terduga</li>
+      </ul>
+
+      <h2>5 Tips Mengelola Arus Kas UMKM yang Efektif</h2>
+
+      <h3>1. Buat Catatan Arus Kas Secara Rutin</h3>
+      <p>Langkah pertama dalam mengelola arus kas adalah mencatat setiap transaksi masuk dan keluar. Gunakan format yang konsisten dan lakukan pencatatan minimal seminggu sekali. Dengan mencatat secara rutin, Anda dapat melihat pola arus kas dan mengantisipasi kekurangan dana.</p>
+
+      <p>Gunakan <a href="/invoice-generator" class="text-primary underline hover:text-primary/80">Invoice Generator</a> untuk membuat faktur penagihan yang rapi sehingga pembayaran dari klien lebih cepat masuk.</p>
+
+      <h3>2. Pisahkan Uang Usaha dan Uang Pribadi</h3>
+      <p>Kesalahan fatal yang sering dilakukan pelaku UMKM adalah mencampurkan uang usaha dengan uang pribadi. Hal ini membuat pencatatan keuangan menjadi kacau dan sulit mengetahui kondisi keuangan bisnis yang sebenarnya. Buat rekening terpisah untuk usaha agar arus kas lebih terkendali.</p>
+
+      <h3>3. Kelola Piutang dengan Tepat Waktu</h3>
+      <p>Piutang yang tertunda lama dapat menyebabkan masalah arus kas. Untuk mengatasinya:</p>
+
+      <ul>
+        <li>Kirim invoice segera setelah pekerjaan selesai</li>
+        <li>Tetapkan termin pembayaran yang jelas (misal: 7 hari atau 30 hari)</li>
+        <li>Lakukan follow up secara berkala untuk piutang yang sudah jatuh tempo</li>
+        <li>Pertimbangkan memberikan diskon untuk pembayaran cepat</li>
+      </ul>
+
+      <p>Buat <a href="/receipt-generator" class="text-primary underline hover:text-primary/80">kwitansi</a> resmi setiap kali menerima pembayaran sebagai bukti tertulis yang sah.</p>
+
+      <h3>4. Sediakan Dana Darurat</h3>
+      <p>Usaha kecil rentan terhadap risiko seperti keterlambatan pembayaran dari klien atau pengeluaran tak terduga. Sisihkan minimal 10-20% dari keuntungan bulanan sebagai dana darurat. Dana ini akan menjadi penyangga ketika arus kas sedang tidak stabil.</p>
+
+      <h3>5. Pantau dan Evaluasi Secara Berkala</h3>
+      <p>Lakukan evaluasi arus kas setiap akhir bulan. Bandingkan pendapatan aktual dengan yang direncanakan. Identifikasi pengeluaran yang bisa dikurangi atau ditunda. Dengan evaluasi berkala, Anda dapat mengambil keputusan bisnis yang lebih tepat.</p>
+
+      <h2>Kesalahan Umum dalam Mengelola Arus Kas UMKM</h2>
+
+      <p>Beberapa kesalahan yang sering terjadi dan perlu dihindari:</p>
+
+      <ul>
+        <li><strong>Tidak ada catatan keuangan</strong> — Tanpa pencatatan, Anda tidak tahu ke mana uang mengalir</li>
+        <li><strong>Terlalu banyak utang</strong> — Utang yang berlebihan memberatkan arus kas bulanan</li>
+        <li><strong>Investasi terburu-buru</strong> — Menginvestasikan semua keuntungan tanpa menyisihkan dana operasional</li>
+        <li><strong>Mengabaikan piutang</strong> — Tidak menagih piutang membuat uang tertahan di pihak lain</li>
+      </ul>
+
+      <h2>Kesimpulan</h2>
+
+      <p>Mengelola arus kas untuk UMKM memang memerlukan disiplin dan konsistensi. Dengan mencatat setiap transaksi, memisahkan uang usaha dan pribadi, mengelola piutang dengan baik, menyediakan dana darurat, serta melakukan evaluasi berkala, Anda dapat menjaga kesehatan keuangan bisnis.</p>
+
+      <p>Gunakan tools gratis dari <a href="/" class="text-primary underline hover:text-primary/80">Lumizo Docs</a> untuk membuat dokumen bisnis profesional seperti invoice, quotation, dan receipt agar operasional keuangan Anda lebih terorganisir.</p>
+    `,
+    category: "Small Business Tips",
+    date: "2024-01-30",
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
