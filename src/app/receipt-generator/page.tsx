@@ -99,9 +99,18 @@ export default function ReceiptGeneratorPage() {
       <div className="aspect-[1/1.41] overflow-auto rounded border bg-white p-4 text-xs text-black">
         <div className="space-y-4">
           <div className="flex justify-between">
-            <div>
-              <p className="text-lg font-bold text-blue-600">{profile.companyName || "Company Name"}</p>
-              <p className="text-gray-500">{profile.address}</p>
+            <div className="flex items-start gap-3">
+              {profile.logo && (
+                <img
+                  src={profile.logo}
+                  alt="Company Logo"
+                  className="h-12 w-12 object-contain"
+                />
+              )}
+              <div>
+                <p className="text-lg font-bold text-blue-600">{profile.companyName || "Company Name"}</p>
+                <p className="text-gray-500">{profile.address}</p>
+              </div>
             </div>
             <p className="text-2xl font-bold text-blue-600">RECEIPT</p>
           </div>
