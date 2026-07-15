@@ -15,6 +15,9 @@ export default function OfferingLetterGeneratorPage() {
   const { profile } = useCompanyProfile();
   const [formData, setFormData] = useState<OfferingLetterFormData | null>(null);
 
+  const totalBenefits = formData?.benefits?.reduce((sum, b) => sum + (b?.amount || 0), 0) || 0;
+  const totalCompensation = (formData?.salary || 0) + totalBenefits;
+
   const generatePdf = async () => {
     if (!formData) return;
 
@@ -25,86 +28,96 @@ export default function OfferingLetterGeneratorPage() {
 
     let y = await drawCompanyHeader({ page, profile, y: 750, title: "OFFERING LETTER" });
 
-    y -= 30;
+    y -= 20;
 
     // Letter details
-    page.drawText(`Number: ${formData.letterNumber}`, { x: 50, y, size: 10, font, color: colors.text });
-    y -= 15;
-    page.drawText(`Date: ${formData.date}`, { x: 50, y, size: 10, font, color: colors.text });
+    page.drawText(`Number: ${formData.letterNumber}`, { x: 50, y, size: 9, font, color: colors.text });
+    y -= 12;
+    page.drawText(`Date: ${formData.date}`, { x: 50, y, size: 9, font, color: colors.text });
 
-    y -= 30;
+    y -= 20;
 
-    // Candidate info
-    page.drawText("To:", { x: 50, y, size: 10, font: fontBold, color: colors.text });
-    y -= 15;
-    page.drawText(formData.candidateName, { x: 50, y, size: 10, font, color: colors.text });
+    // To
+    page.drawText("To:", { x: 50, y, size: 9, font: fontBold, color: colors.text });
+    y -= 12;
+    page.drawText(formData.candidateName, { x: 50, y, size: 9, font, color: colors.text });
 
-    y -= 30;
+    y -= 20;
 
     // Opening
-    page.drawText("Dear " + formData.candidateName + ",", { x: 50, y, size: 10, font, color: colors.text });
+    page.drawText(`Dear ${formData.candidateName},`, { x: 50, y, size: 9, font, color: colors.text });
+    y -= 15;
+    page.drawText("We are pleased to offer you the following position:", { x: 50, y, size: 9, font, color: colors.text });
+
     y -= 20;
-    page.drawText("We are pleased to offer you the following position at our company:", {
-      x: 50, y, size: 10, font, color: colors.text,
-    });
 
-    y -= 30;
-
-    // Position details
+    // Details table
     const details = [
-      { label: "Position", value: formData.position },
-      { label: "Department", value: formData.department || "-" },
-      { label: "Start Date", value: formData.startDate },
-      { label: "Work Location", value: formData.workLocation || "-" },
-      { label: "Working Hours", value: formData.workingHours || "-" },
-      { label: "Probation Period", value: formData.probationPeriod || "-" },
+      ["Position:", formData.position],
+      ["Department:", formData.department || "-"],
+      ["Start Date:", formData.startDate],
+      ["Location:", formData.workLocation || "-"],
+      ["Hours:", formData.workingHours || "-"],
+      ["Probation:", formData.probationPeriod || "-"],
     ];
 
-    for (const detail of details) {
-      page.drawText(`${detail.label}:`, { x: 50, y, size: 10, font: fontBold, color: colors.text });
-      page.drawText(detail.value, { x: 200, y, size: 10, font, color: colors.text });
-      y -= 15;
+    for (const [label, value] of details) {
+      page.drawText(label, { x: 50, y, size: 9, font: fontBold, color: colors.text });
+      page.drawText(value, { x: 150, y, size: 9, font, color: colors.text });
+      y -= 12;
     }
 
     y -= 10;
 
-    // Salary
-    page.drawText("Monthly Salary:", { x: 50, y, size: 10, font: fontBold, color: colors.text });
-    page.drawText(formatCurrency(formData.salary), { x: 200, y, size: 12, font: fontBold, color: colors.primary });
+    // Compensation section
+    page.drawText("COMPENSATION", { x: 50, y, size: 10, font: fontBold, color: colors.primary });
+    y -= 15;
 
-    y -= 25;
+    page.drawText("Base Salary:", { x: 50, y, size: 9, font: fontBold, color: colors.text });
+    page.drawText(formatCurrency(formData.salary), { x: 150, y, size: 9, font, color: colors.text });
+    y -= 12;
 
     // Benefits
-    if (formData.benefits) {
-      page.drawText("Benefits:", { x: 50, y, size: 10, font: fontBold, color: colors.text });
-      y -= 15;
-      const benefitLines = formData.benefits.match(/.{1,60}/g) || [formData.benefits];
-      for (const line of benefitLines.slice(0, 3)) {
-        page.drawText(line, { x: 70, y, size: 10, font, color: colors.text });
+    if (formData.benefits && formData.benefits.length > 0) {
+      for (const benefit of formData.benefits) {
+        page.drawText(benefit.name, { x: 70, y, size: 9, font, color: colors.text });
+        page.drawText(formatCurrency(benefit.amount), { x: 150, y, size: 9, font, color: colors.text });
         y -= 12;
       }
-      y -= 10;
     }
 
-    // Closing
-    page.drawText("This offer is subject to the following terms:", { x: 50, y, size: 10, font, color: colors.text });
+    // Total
+    y -= 5;
+    page.drawLine({ start: { x: 50, y }, end: { x: 250, y }, thickness: 0.5, color: colors.lightText });
+    y -= 12;
+    page.drawText("Total:", { x: 50, y, size: 9, font: fontBold, color: colors.text });
+    page.drawText(formatCurrency(totalCompensation), { x: 150, y, size: 10, font: fontBold, color: colors.primary });
+
+    y -= 20;
+
+    // Terms
+    page.drawText("TERMS & CONDITIONS", { x: 50, y, size: 10, font: fontBold, color: colors.primary });
+    y -= 12;
+    page.drawText("1. You must pass the probation period.", { x: 50, y, size: 9, font, color: colors.text });
+    y -= 10;
+    page.drawText("2. Subject to company policies.", { x: 50, y, size: 9, font, color: colors.text });
+    y -= 10;
+    page.drawText("3. Please confirm by signing below.", { x: 50, y, size: 9, font, color: colors.text });
+
     y -= 15;
-    page.drawText("1. You must pass the probation period as specified above.", { x: 50, y, size: 10, font, color: colors.text });
-    y -= 12;
-    page.drawText("2. This position is subject to the company's policies and regulations.", { x: 50, y, size: 10, font, color: colors.text });
-    y -= 12;
-    page.drawText("3. Please confirm your acceptance by signing below.", { x: 50, y, size: 10, font, color: colors.text });
 
-    y -= 30;
-
-    page.drawText("We look forward to welcoming you to our team.", { x: 50, y, size: 10, font, color: colors.text });
+    page.drawText("We look forward to welcoming you.", { x: 50, y, size: 9, font, color: colors.text });
 
     // Notes
     if (formData.notes) {
-      y -= 30;
-      page.drawText("Notes:", { x: 50, y, size: 10, font: fontBold, color: colors.text });
-      y -= 15;
-      page.drawText(formData.notes, { x: 50, y, size: 10, font, color: colors.text });
+      y -= 20;
+      page.drawText("Notes:", { x: 50, y, size: 9, font: fontBold, color: colors.text });
+      y -= 12;
+      const noteLines = formData.notes.match(/.{1,60}/g) || [formData.notes];
+      for (const line of noteLines.slice(0, 2)) {
+        page.drawText(line, { x: 50, y, size: 9, font, color: colors.text });
+        y -= 10;
+      }
     }
 
     drawSignature(page, profile, 150);
@@ -129,80 +142,57 @@ export default function OfferingLetterGeneratorPage() {
   const previewContent = formData ? (
     <div className="space-y-4">
       <div className="aspect-[1/1.41] overflow-auto rounded border bg-white p-4 text-xs text-black">
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="flex justify-between">
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-2">
               {profile.logo && (
-                <img src={profile.logo} alt="Company Logo" className="h-12 w-12 object-contain" />
+                <img src={profile.logo} alt="Logo" className="h-10 w-10 object-contain" />
               )}
               <div>
-                <p className="text-lg font-bold text-blue-600">{profile.companyName || "Company Name"}</p>
-                <p className="text-gray-500">{profile.address}</p>
-                <p className="text-gray-500">{profile.phone && `Phone: ${profile.phone}`}</p>
-                <p className="text-gray-500">{profile.email && `Email: ${profile.email}`}</p>
+                <p className="text-sm font-bold text-blue-600">{profile.companyName || "Company"}</p>
+                <p className="text-gray-500 text-[10px]">{profile.address}</p>
               </div>
             </div>
-            <div className="text-right">
-              <p className="text-2xl font-bold text-blue-600">OFFERING LETTER</p>
-            </div>
+            <p className="text-lg font-bold text-blue-600">OFFERING LETTER</p>
           </div>
 
-          <div className="border-t pt-4">
-            <p><strong>Number:</strong> {formData.letterNumber}</p>
-            <p><strong>Date:</strong> {formData.date}</p>
+          <div className="border-t pt-2 text-[10px]">
+            <p><strong>No:</strong> {formData.letterNumber} | <strong>Date:</strong> {formData.date}</p>
           </div>
 
-          <div className="border-t pt-4">
-            <p className="font-bold">To:</p>
-            <p>{formData.candidateName}</p>
+          <div className="border-t pt-2 text-[10px]">
+            <p>To: <strong>{formData.candidateName}</strong></p>
           </div>
 
-          <div className="border-t pt-4">
+          <div className="border-t pt-2 text-[10px]">
             <p>Dear {formData.candidateName},</p>
-            <p className="mt-2">We are pleased to offer you the following position at our company:</p>
+            <p className="mt-1">We are pleased to offer you:</p>
           </div>
 
-          <div className="border-t pt-4 space-y-2">
-            <div className="grid grid-cols-2">
-              <span className="font-bold">Position:</span>
-              <span>{formData.position}</span>
-            </div>
-            <div className="grid grid-cols-2">
-              <span className="font-bold">Department:</span>
-              <span>{formData.department || "-"}</span>
-            </div>
-            <div className="grid grid-cols-2">
-              <span className="font-bold">Start Date:</span>
-              <span>{formData.startDate}</span>
-            </div>
-            <div className="grid grid-cols-2">
-              <span className="font-bold">Work Location:</span>
-              <span>{formData.workLocation || "-"}</span>
-            </div>
-            <div className="grid grid-cols-2">
-              <span className="font-bold">Working Hours:</span>
-              <span>{formData.workingHours || "-"}</span>
-            </div>
-            <div className="grid grid-cols-2">
-              <span className="font-bold">Probation Period:</span>
-              <span>{formData.probationPeriod || "-"}</span>
+          <div className="border-t pt-2 text-[10px] space-y-1">
+            <div className="grid grid-cols-2"><span className="font-bold">Position:</span><span>{formData.position}</span></div>
+            <div className="grid grid-cols-2"><span className="font-bold">Department:</span><span>{formData.department || "-"}</span></div>
+            <div className="grid grid-cols-2"><span className="font-bold">Start Date:</span><span>{formData.startDate}</span></div>
+            <div className="grid grid-cols-2"><span className="font-bold">Location:</span><span>{formData.workLocation || "-"}</span></div>
+            <div className="grid grid-cols-2"><span className="font-bold">Hours:</span><span>{formData.workingHours || "-"}</span></div>
+            <div className="grid grid-cols-2"><span className="font-bold">Probation:</span><span>{formData.probationPeriod || "-"}</span></div>
+          </div>
+
+          <div className="border-t pt-2 text-[10px]">
+            <p className="font-bold text-blue-600">COMPENSATION</p>
+            <div className="mt-1 space-y-1">
+              <div className="flex justify-between"><span>Base Salary</span><span>{formatCurrency(formData.salary)}</span></div>
+              {formData.benefits?.map((b, i) => (
+                <div key={i} className="flex justify-between"><span className="ml-2">{b.name}</span><span>{formatCurrency(b.amount)}</span></div>
+              ))}
+              <div className="flex justify-between border-t pt-1 font-bold"><span>Total</span><span className="text-blue-600">{formatCurrency(totalCompensation)}</span></div>
             </div>
           </div>
 
-          <div className="border-t pt-4">
-            <span className="font-bold">Monthly Salary:</span>
-            <span className="ml-2 text-lg font-bold text-blue-600">{formatCurrency(formData.salary)}</span>
-          </div>
-
-          {formData.benefits && (
-            <div className="border-t pt-4">
-              <p className="font-bold">Benefits:</p>
-              <p className="text-gray-600">{formData.benefits}</p>
-            </div>
-          )}
-
-          <div className="border-t pt-4 text-gray-500 text-xs">
-            <p>Generated by Lumizo Docs</p>
+          <div className="border-t pt-2 text-[10px] text-gray-500">
+            <p>1. Must pass probation period.</p>
+            <p>2. Subject to company policies.</p>
+            <p>3. Confirm by signing below.</p>
           </div>
         </div>
       </div>
